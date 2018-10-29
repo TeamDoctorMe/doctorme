@@ -1,0 +1,14 @@
+-# frozen_string_literal: true
+= simple_form_for(@diagnosis) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :title
+    = f.input :description
+    = f.input :age_min
+    = f.input :age_max
+    = f.input :gender, collection: Diagnosis.genders.keys, include_blank: false
+
+  .form-actions
+    = f.button :submit
