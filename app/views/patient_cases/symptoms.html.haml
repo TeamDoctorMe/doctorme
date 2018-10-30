@@ -5,16 +5,20 @@
   %b Age:
   = @patient_case.age
 
-- @tier_1_symptoms.each do |symptom|
-  = link_to symptom.title, '#', id: symptom.id, class: 'symptom-tier tier-1', data: { children: symptom.symptoms.ids }
+%ul.list-inline
+  - @tier_1_symptoms.each do |symptom|
+    %li.symptom-tier.tier-1{ id: symptom.id }
+      = link_to symptom.title, '#', id: symptom.id, data: { children: symptom.symptoms.ids }
 
-%br
-- @tier_2_symptoms.each do |symptom|
-  = link_to symptom.title, '#', id: symptom.id, class: 'symptom-tier tier-2', data: { children: symptom.symptoms.ids }
+%ul.list-inline
+  - @tier_2_symptoms.each do |symptom|
+    %li.symptom-tier.tier-2{ id: symptom.id }
+      = link_to symptom.title, '#', data: { children: symptom.symptoms.ids }
 
-%br
-- @tier_3_symptoms.each do |symptom|
-  = link_to symptom.title, '#', id: symptom.id, class: 'symptom-tier tier-3', data: { children: symptom.symptoms.ids }
+%ul.list-inline
+  - @tier_3_symptoms.each do |symptom|
+    %li.symptom-tier.tier-3{ id: symptom.id }
+      = link_to symptom.title, '#', data: { children: symptom.symptoms.ids }
 
 -# frozen_string_literal: true
 = simple_form_for(@patient_case) do |f|
@@ -23,29 +27,8 @@
 
   .form-inputs
     = f.input :symptom_id
-    -# = f.association :diagnosis
-    -# = f.input :diagnosis_attributes
-    -# = f.input :medication_attributes
 
   .form-actions
     = f.button :submit
 
-%h2
-  Available Medications
-- Medication.within_age_range(@patient_case.age).each do |medication|
-  %p
-    = medication.title
-    = medication.age_min
-    = medication.age_max
-
-%h2
-  Available Diagnosis
-- Diagnosis.within_age_range(@patient_case.age).each do |diagnosis|
-  %p
-    = diagnosis.title
-    = diagnosis.age_min
-    = diagnosis.age_max
-
-= link_to 'Edit', edit_patient_case_path(@patient_case)
-\|
-= link_to 'Back', patient_cases_path
+= render 'overview'

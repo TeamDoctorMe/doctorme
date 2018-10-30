@@ -9,28 +9,9 @@
   %b Medication attributes:
   = @patient_case.medication_attributes
 
-
-%h2
-  Considerations
-- @patient_case.considerations.each do |consideration|
-  = consideration.title
-
-%h2
-  Available Medications
-- @patient_case.potential_medications.each do |medication|
-  %p
-    = medication.title
-    = medication.age_min
-    = medication.age_max
-
-%h2
-  Available Diagnosis
-- @patient_case.potential_diagnosis.each do |diagnosis|
-  %p
-    = diagnosis.title
-    = diagnosis.age_min
-    = diagnosis.age_max
-
 = link_to 'Edit', edit_patient_case_path(@patient_case)
 \|
 = link_to 'Back', patient_cases_path
+
+= render 'overview'
+

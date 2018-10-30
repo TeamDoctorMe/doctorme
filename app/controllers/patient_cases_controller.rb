@@ -13,14 +13,9 @@ class PatientCasesController < ApplicationController
   end
 
   def symptoms
-    potential_symptoms = @patient_case.potential_symptoms
-    @tier_1_symptoms   = potential_symptoms.within_age_range(@patient_case.age).base
-    @tier_2_symptoms   = potential_symptoms.where(parent_id: @tier_1_symptoms.ids)
-    @tier_3_symptoms   = potential_symptoms.where(parent_id: @tier_2_symptoms.ids)
   end
 
   def diagnosis
-    @considerations = @patient_case.potential_considerations
   end
 
   def summary
@@ -75,6 +70,13 @@ class PatientCasesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_patient_case
       @patient_case = PatientCase.find(params[:id])
+
+      potential_symptoms = @patient_case.potential_symptoms
+      @tier_1_symptoms   = potential_symptoms.within_age_range(@patient_case.age).base
+      @tier_2_symptoms   = potential_symptoms.where(parent_id: @tier_1_symptoms.ids)
+      @tier_3_symptoms   = potential_symptoms.where(parent_id: @tier_2_symptoms.ids)
+
+      @considerations = @patient_case.potential_considerations
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
