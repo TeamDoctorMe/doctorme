@@ -5,7 +5,7 @@ module Gender
     enum gender:  {
                     both: 0,
                     male: 1,
-                    female: 0
+                    female: 2
                   }
   end
 end

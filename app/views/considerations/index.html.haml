@@ -1,0 +1,29 @@
+%h1 Listing considerations
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Exit
+      %th Age min
+      %th Age max
+      %th Gender
+      %th
+      %th
+      %th
+
+  %tbody
+    - @considerations.each do |consideration|
+      %tr
+        %td= consideration.title
+        %td= consideration.exit
+        %td= consideration.age_min
+        %td= consideration.age_max
+        %td= consideration.gender
+        %td= link_to 'Show', consideration
+        %td= link_to 'Edit', edit_consideration_path(consideration)
+        %td= link_to 'Destroy', consideration, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Consideration', new_consideration_path

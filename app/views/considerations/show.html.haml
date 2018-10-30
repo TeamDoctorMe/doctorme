@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @consideration.title
+%p
+  %b Exit:
+  = @consideration.exit
+%p
+  %b Age min:
+  = @consideration.age_min
+%p
+  %b Age max:
+  = @consideration.age_max
+%p
+  %b Gender:
+  = @consideration.gender
+
+= link_to 'Edit', edit_consideration_path(@consideration)
+\|
+= link_to 'Back', considerations_path

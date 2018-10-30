@@ -7,6 +7,14 @@ Diagnosis.create([
 
 Medication.create([
   { title: 'Tylenol', description: 'Acetaminophen. It can treat minor aches and pains, and reduces fever.' },
-  { title: 'Advil', description: 'It can treat minor aches and pains, and reduces fever.' },
-  { title: 'X-lax', description: 'In treatment of poo-poo problems.' }
+  { title: 'Advil',   description: 'It can treat minor aches and pains, and reduces fever.' },
+  { title: 'X-lax',   description: 'In treatment of poo-poo problems.' }
+])
+
+Consideration.create([
+  { title: 'Pregnant',          gender: :female            },
+  { title: 'Organ Transplant',  gender: :both              },
+  { title: 'Substance Abuse',   gender: :both              },
+  { title: 'Concussion',        gender: :both              },
+  { title: 'Chest Pains',       gender: :both,  exit: true },
 ])
