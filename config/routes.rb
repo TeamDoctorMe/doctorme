@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :patient_cases
   resources :symptoms
   resources :considerations
   resources :medications

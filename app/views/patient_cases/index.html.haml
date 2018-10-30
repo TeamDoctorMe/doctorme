@@ -1,0 +1,31 @@
+%h1 Listing patient_cases
+
+%table
+  %thead
+    %tr
+      %th Gender
+      %th Age
+      %th Symptom
+      %th Diagnosis
+      %th Diagnosis attributes
+      %th Medication attributes
+      %th
+      %th
+      %th
+
+  %tbody
+    - @patient_cases.each do |patient_case|
+      %tr
+        %td= patient_case.gender
+        %td= patient_case.age
+        %td= patient_case.symptom
+        %td= patient_case.diagnosis
+        %td= patient_case.diagnosis_attributes
+        %td= patient_case.medication_attributes
+        %td= link_to 'Show', patient_case
+        %td= link_to 'Edit', edit_patient_case_path(patient_case)
+        %td= link_to 'Destroy', patient_case, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Patient case', new_patient_case_path

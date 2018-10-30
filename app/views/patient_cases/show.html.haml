@@ -1,0 +1,38 @@
+%p
+  %b Gender:
+  = @patient_case.gender
+%p
+  %b Age:
+  = @patient_case.age
+%p
+  %b Symptom:
+  = @patient_case.symptom
+%p
+  %b Diagnosis:
+  = @patient_case.diagnosis
+%p
+  %b Diagnosis attributes:
+  = @patient_case.diagnosis_attributes
+%p
+  %b Medication attributes:
+  = @patient_case.medication_attributes
+
+%h2
+  Available Medications
+- Medication.within_age_range(@patient_case.age).each do |medication|
+  %p
+    = medication.title
+    = medication.age_min
+    = medication.age_max
+
+%h2
+  Available Diagnosis
+- Diagnosis.within_age_range(@patient_case.age).each do |diagnosis|
+  %p
+    = diagnosis.title
+    = diagnosis.age_min
+    = diagnosis.age_max
+
+= link_to 'Edit', edit_patient_case_path(@patient_case)
+\|
+= link_to 'Back', patient_cases_path
