@@ -1,0 +1,29 @@
+%h1 Listing medications
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Age min
+      %th Age max
+      %th Gender
+      %th
+      %th
+      %th
+
+  %tbody
+    - @medications.each do |medication|
+      %tr
+        %td= medication.title
+        %td= medication.description
+        %td= medication.age_min
+        %td= medication.age_max
+        %td= medication.gender
+        %td= link_to 'Show', medication
+        %td= link_to 'Edit', edit_medication_path(medication)
+        %td= link_to 'Destroy', medication, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Medication', new_medication_path

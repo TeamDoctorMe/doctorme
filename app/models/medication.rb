@@ -1,4 +1,4 @@
-class Diagnosis < ApplicationRecord
+class Medication < ApplicationRecord
   include AgeRange
   include Gender
 

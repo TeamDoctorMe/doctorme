@@ -4,3 +4,9 @@ Diagnosis.create([
   { title: 'Ovarian Cancer',    description: 'When your ovaries are sick.', gender: :female },
   { title: 'Testicular Cancer', description: 'When your testicles hurt real bad.', gender: :male }
 ])
+
+Medication.create([
+  { title: 'Tylenol', description: 'Acetaminophen. It can treat minor aches and pains, and reduces fever.' },
+  { title: 'Advil', description: 'It can treat minor aches and pains, and reduces fever.' },
+  { title: 'X-lax', description: 'In treatment of poo-poo problems.' }
+])

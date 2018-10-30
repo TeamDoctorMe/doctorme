@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @medication.title
+%p
+  %b Description:
+  = @medication.description
+%p
+  %b Age min:
+  = @medication.age_min
+%p
+  %b Age max:
+  = @medication.age_max
+%p
+  %b Gender:
+  = @medication.gender
+
+= link_to 'Edit', edit_medication_path(@medication)
+\|
+= link_to 'Back', medications_path
