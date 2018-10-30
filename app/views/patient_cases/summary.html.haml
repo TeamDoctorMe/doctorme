@@ -9,9 +9,15 @@
   %b Medication attributes:
   = @patient_case.medication_attributes
 
+
+%h2
+  Considerations
+- @patient_case.considerations.each do |consideration|
+  = consideration.title
+
 %h2
   Available Medications
-- Medication.within_age_range(@patient_case.age).each do |medication|
+- @patient_case.potential_medications.each do |medication|
   %p
     = medication.title
     = medication.age_min
@@ -19,7 +25,7 @@
 
 %h2
   Available Diagnosis
-- Diagnosis.within_age_range(@patient_case.age).each do |diagnosis|
+- @patient_case.potential_diagnosis.each do |diagnosis|
   %p
     = diagnosis.title
     = diagnosis.age_min

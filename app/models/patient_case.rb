@@ -4,6 +4,9 @@ class PatientCase < ApplicationRecord
   belongs_to :symptom,   required: false
   belongs_to :diagnosis, required: false
 
+  has_many :consideration_patient_cases
+  has_many :considerations, through: :consideration_patient_cases
+
   validates :gender, presence: true
   validates :age,    presence: true
 
@@ -19,6 +22,10 @@ class PatientCase < ApplicationRecord
 
   def potential_diagnosis
     Diagnosis.within_age_range(age).within_gender(gender)
+  end
+
+  def potential_considerations
+    Consideration.within_age_range(age).within_gender(gender)
   end
 
   private

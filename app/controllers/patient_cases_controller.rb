@@ -20,7 +20,7 @@ class PatientCasesController < ApplicationController
   end
 
   def diagnosis
-    @considerations = Consideration.within_age_range(@patient_case.age)
+    @considerations = @patient_case.potential_considerations
   end
 
   def summary
@@ -79,13 +79,19 @@ class PatientCasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_case_params
-      params.require(:patient_case).permit(:gender, :age, :symptom_id, :diagnosis_id, :diagnosis_attributes, :medication_attributes)
+      params.require(:patient_case).permit(:gender,
+                                           :age,
+                                           :symptom_id,
+                                           :diagnosis_id,
+                                           :diagnosis_attributes,
+                                           :medication_attributes,
+                                           consideration_ids: [])
     end
 
     def _set_redirect
       if @patient_case.symptom.nil?
         redirect_to symptoms_patient_case_path(@patient_case), notice: 'Describe your symptoms.'
-      elsif @patient_case.symptom.present?
+      elsif @patient_case.symptom.present? and @patient_case.considerations.nil?
         redirect_to diagnosis_patient_case_path(@patient_case), notice: 'Checkout Your diagnosis.'
       else
         redirect_to summary_patient_case_path(@patient_case), notice: 'Checkout Your diagnosis.'
