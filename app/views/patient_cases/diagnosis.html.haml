@@ -1,0 +1,49 @@
+Based on your symptoms, you have
+-# = @patient_case.diagnosis.id
+
+%br
+
+To make sure we find the right medication, please note any special considerations.
+- @considerations.each do |consideration|
+  = consideration.title
+
+%p
+  %b Gender:
+  = @patient_case.gender
+%p
+  %b Age:
+  = @patient_case.age
+%p
+  %b Symptom:
+  = @patient_case.symptom.title if @patient_case.symptom.present?
+%p
+  %b Diagnosis:
+  = @patient_case.diagnosis.title if @patient_case.diagnosis.present?
+%p
+  %b Diagnosis attributes:
+  = @patient_case.diagnosis_attributes
+%p
+  %b Medication attributes:
+  = @patient_case.medication_attributes
+
+%h2
+  Available Medications
+- @patient_case.potential_medications.each do |medication|
+  %p
+    = medication.title
+    = medication.age_min
+    = medication.age_max
+    = medication.gender
+
+%h2
+  Available Diagnosis
+- @patient_case.potential_diagnosis.each do |diagnosis|
+  %p
+    = diagnosis.title
+    = diagnosis.age_min
+    = diagnosis.age_max
+    = diagnosis.gender
+
+= link_to 'Edit', edit_patient_case_path(@patient_case)
+\|
+= link_to 'Back', patient_cases_path

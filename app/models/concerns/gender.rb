@@ -8,5 +8,9 @@ module Gender
                     female: 2
                   }
 
+    scope :within_gender, -> (gen) {
+                                      where('gender = ? OR gender = ?', Symptom.genders['both'], Symptom.genders[gen])
+                                    }
+
   end
 end

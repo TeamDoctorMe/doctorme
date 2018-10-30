@@ -1,5 +1,5 @@
 class PatientCasesController < ApplicationController
-  before_action :set_patient_case, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient_case, only: [:show, :symptoms, :diagnosis, :summary, :edit, :update, :destroy]
 
   # GET /patient_cases
   # GET /patient_cases.json
@@ -11,6 +11,21 @@ class PatientCasesController < ApplicationController
   # GET /patient_cases/1.json
   def show
   end
+
+  def symptoms
+    potential_symptoms = @patient_case.potential_symptoms
+    @tier_1_symptoms   = potential_symptoms.within_age_range(@patient_case.age).base
+    @tier_2_symptoms   = potential_symptoms.where(parent_id: @tier_1_symptoms.ids)
+    @tier_3_symptoms   = potential_symptoms.where(parent_id: @tier_2_symptoms.ids)
+  end
+
+  def diagnosis
+    @considerations = Consideration.within_age_range(@patient_case.age)
+  end
+
+  def summary
+  end
+
 
   # GET /patient_cases/new
   def new
@@ -28,11 +43,9 @@ class PatientCasesController < ApplicationController
 
     respond_to do |format|
       if @patient_case.save
-        format.html { redirect_to @patient_case, notice: 'Patient case was successfully created.' }
-        format.json { render :show, status: :created, location: @patient_case }
+        format.html { redirect_to symptoms_patient_case_path(@patient_case), notice: 'Patient case was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @patient_case.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,14 +53,12 @@ class PatientCasesController < ApplicationController
   # PATCH/PUT /patient_cases/1
   # PATCH/PUT /patient_cases/1.json
   def update
-    respond_to do |format|
-      if @patient_case.update(patient_case_params)
-        format.html { redirect_to @patient_case, notice: 'Patient case was successfully updated.' }
-        format.json { render :show, status: :ok, location: @patient_case }
-      else
-        format.html { render :edit }
-        format.json { render json: @patient_case.errors, status: :unprocessable_entity }
-      end
+
+    if @patient_case.update(patient_case_params)
+      _set_redirect
+      # redirect_to @patient_case, notice: 'Patient case was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -57,7 +68,6 @@ class PatientCasesController < ApplicationController
     @patient_case.destroy
     respond_to do |format|
       format.html { redirect_to patient_cases_url, notice: 'Patient case was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -70,5 +80,15 @@ class PatientCasesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_case_params
       params.require(:patient_case).permit(:gender, :age, :symptom_id, :diagnosis_id, :diagnosis_attributes, :medication_attributes)
+    end
+
+    def _set_redirect
+      if @patient_case.symptom.nil?
+        redirect_to symptoms_patient_case_path(@patient_case), notice: 'Describe your symptoms.'
+      elsif @patient_case.symptom.present?
+        redirect_to diagnosis_patient_case_path(@patient_case), notice: 'Checkout Your diagnosis.'
+      else
+        redirect_to summary_patient_case_path(@patient_case), notice: 'Checkout Your diagnosis.'
+      end
     end
 end
