@@ -1,0 +1,12 @@
+%tr{ class: "#{symptom.nested_class}"}
+  %td= link_to symptom.title, url_for(symptom_id: symptom.id)
+  %td= symptom.description
+  %td= symptom.age_min
+  %td= symptom.age_max
+  %td= symptom.gender
+  %td= symptom.position
+  %td= symptom.parent_id
+  %td= symptom.diagnosis
+  %td= link_to 'Show', symptom
+  %td= link_to 'Edit', edit_symptom_path(symptom)
+  %td= link_to 'Destroy', symptom, method: :delete, data: { confirm: 'Are you sure?' }

@@ -18,3 +18,40 @@ Consideration.create([
   { title: 'Concussion',        gender: :both              },
   { title: 'Chest Pains',       gender: :both,  exit: true },
 ])
+
+Symptom.create!([
+  {
+    title: 'Head',
+    symptoms: Symptom.create([
+      { title: 'Forehead' },
+      { title: 'Ears' },
+      { title: 'Nose' },
+      { title: 'Eyes' },
+    ])
+  },
+  {
+    title: 'Torso',
+    symptoms: Symptom.create([
+      { title: 'Heart' },
+      { title: 'Lungs' },
+      { title: 'Ribs' },
+      { title: 'Shoulders' },
+    ])
+  },{
+    title: 'Legs',
+    symptoms: Symptom.create([
+      { title: 'Thighs' },
+      { title: 'Calfs' },
+      { title: 'Hips' },
+      { title: 'Feet' },
+    ])
+  },
+])
+
+Symptom.where.not(parent_id: nil).each do |symptom|
+  symptom.symptoms.create([
+    { title: "Level 1 #{symptom.title}" },
+    { title: "Level 2 #{symptom.title}" },
+    { title: "Level 3 #{symptom.title}" },
+  ])
+end

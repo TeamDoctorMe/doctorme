@@ -1,0 +1,14 @@
+th {
+  text-align: left;
+}
+
+tr.nested {
+  td:first-child {
+    padding-left: 15px;
+  }
+  &.nested-2x {
+    td:first-child {
+      padding-left: 30px;
+    } 
+  }
+}
