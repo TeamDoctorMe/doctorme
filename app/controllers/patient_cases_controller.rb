@@ -13,14 +13,16 @@ class PatientCasesController < ApplicationController
   end
 
   def symptoms
+    @symptoms = params[:symptom_id] ? @potential_symptoms.where(parent_id: params[:symptom_id]) : @potential_symptoms.base
   end
 
   def diagnosis
+    _ensure_symptoms
   end
 
   def summary
+    # _ensure_considersations
   end
-
 
   # GET /patient_cases/new
   def new
@@ -48,10 +50,12 @@ class PatientCasesController < ApplicationController
   # PATCH/PUT /patient_cases/1
   # PATCH/PUT /patient_cases/1.json
   def update
+    redirect_path = symptoms_patient_case_path(@patient_case)  if params[:patient_case][:age].present?
+    redirect_path = diagnosis_patient_case_path(@patient_case) if params[:patient_case][:symptom_id].present?
+    redirect_path = summary_patient_case_path(@patient_case)   if params[:patient_case][:consideration_ids].present?
 
     if @patient_case.update(patient_case_params)
-      _set_redirect
-      # redirect_to @patient_case, notice: 'Patient case was successfully updated.'
+      redirect_to redirect_path, notice: 'Patient case was successfully updated.'
     else
       render :edit
     end
@@ -71,12 +75,8 @@ class PatientCasesController < ApplicationController
     def set_patient_case
       @patient_case = PatientCase.find(params[:id])
 
-      potential_symptoms = @patient_case.potential_symptoms
-      @tier_1_symptoms   = potential_symptoms.within_age_range(@patient_case.age).base
-      @tier_2_symptoms   = potential_symptoms.where(parent_id: @tier_1_symptoms.ids)
-      @tier_3_symptoms   = potential_symptoms.where(parent_id: @tier_2_symptoms.ids)
-
-      @considerations = @patient_case.potential_considerations
+      @potential_symptoms = @patient_case.potential_symptoms
+      @considerations     = @patient_case.potential_considerations
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -90,13 +90,15 @@ class PatientCasesController < ApplicationController
                                            consideration_ids: [])
     end
 
-    def _set_redirect
-      if @patient_case.symptom.nil?
+    def _ensure_symptoms
+      unless @patient_case.symptom.present?
         redirect_to symptoms_patient_case_path(@patient_case), notice: 'Describe your symptoms.'
-      elsif @patient_case.symptom.present? and @patient_case.considerations.nil?
+      end
+    end
+
+    def _ensure_considersations
+      if @patient_case.symptom.present? and @patient_case.considerations.empty?
         redirect_to diagnosis_patient_case_path(@patient_case), notice: 'Checkout Your diagnosis.'
-      else
-        redirect_to summary_patient_case_path(@patient_case), notice: 'Checkout Your diagnosis.'
       end
     end
 end

@@ -11,6 +11,7 @@ class PatientCase < ApplicationRecord
   validates :age,    presence: true
 
   before_save :_ensure_diagnosis
+  before_save :_ensure_medications
 
   def potential_symptoms
     Symptom.within_age_range(age).within_gender(gender)
@@ -32,7 +33,12 @@ class PatientCase < ApplicationRecord
 
   def _ensure_diagnosis
     if self.symptom.present? and self.diagnosis.nil?
-      self.diagnosis = self.symptom.diagnosis
+      self.diagnosis            = self.symptom.diagnosis
+      self.diagnosis_attributes = self.symptom.diagnosis.to_json
     end
+  end
+
+  def _ensure_medications
+    self.medication_attributes = potential_medications.to_json
   end
 end

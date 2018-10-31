@@ -11,6 +11,12 @@ class Symptom < ApplicationRecord
 
   validates :title, presence: true
 
+  def level
+    level = 1
+    level += parent.level if parent
+    level
+  end
+
   def nested_class
     if parent.present? and parent.parent.present?
       'nested nested-2x'

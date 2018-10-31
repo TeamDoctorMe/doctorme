@@ -3,18 +3,4 @@ Based on your symptoms, you have
 
 %br
 
--# frozen_string_literal: true
-= simple_form_for(@patient_case) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-  .form-inputs
-    = f.association :considerations, collection: @considerations, as: :check_boxes
-    -# = f.association :diagnosis
-    -# = f.input :diagnosis_attributes
-    -# = f.input :medication_attributes
-
-  .form-actions
-    = f.button :submit
-
-= render 'overview'
+= render 'form'

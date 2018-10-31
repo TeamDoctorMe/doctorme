@@ -1,25 +1,36 @@
 = link_to 'Admin Check', '#', class: 'toggleable', data: { toggleable: '.admin-process-check' }
 
 .admin-process-check
+  %p
+    %b Gender:
+    = @patient_case.gender
+  %p
+    %b Age:
+    = @patient_case.age
+  
   %h2
     Considerations
-  - @patient_case.considerations.each do |consideration|
-    = consideration.title
+  %ul
+    - @patient_case.considerations.each do |consideration|
+      %li
+        = consideration.title
 
   %h2
     Available Medications
-  - @patient_case.potential_medications.each do |medication|
-    %p
-      = medication.title
-      = medication.age_min
-      = medication.age_max
-      = medication.gender
+  %ul
+    - @patient_case.potential_medications.each do |medication|
+      %li
+        = medication.title
+        = medication.age_min
+        = medication.age_max
+        = medication.gender
 
   %h2
     Available Diagnosis
-  - @patient_case.potential_diagnosis.each do |diagnosis|
-    %p
-      = diagnosis.title
-      = diagnosis.age_min
-      = diagnosis.age_max
-      = diagnosis.gender
+  %ul
+    - @patient_case.potential_diagnosis.each do |diagnosis|
+      %li
+        = diagnosis.title
+        = diagnosis.age_min
+        = diagnosis.age_max
+        = diagnosis.gender
