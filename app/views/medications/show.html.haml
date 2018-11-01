@@ -16,6 +16,11 @@
   %b Gender:
   = @medication.gender
 
+%p
+  %b Permitted Considerations:
+  - @medication.considerations.each do |consideration|
+    = consideration.title
+
 = link_to 'Edit', edit_medication_path(@medication)
 \|
 = link_to 'Back', medications_path

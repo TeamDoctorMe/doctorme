@@ -9,6 +9,7 @@
     = f.input :age_min
     = f.input :age_max
     = f.input :gender, collection: Diagnosis.genders.keys, include_blank: false
+    = f.association :considerations, as: :check_boxes
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: 'btn btn-primary'

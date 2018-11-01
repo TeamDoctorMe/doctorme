@@ -24,6 +24,7 @@
         = medication.age_min
         = medication.age_max
         = medication.gender
+        = medication.considerations.map {|c| c.title}
 
   %h2
     Available Diagnosis
