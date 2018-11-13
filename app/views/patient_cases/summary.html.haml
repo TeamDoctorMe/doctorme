@@ -1,13 +1,14 @@
+= render 'nav'
+.container
+  %h2 Diagnosis:
+  %strong= JSON.parse(@patient_case.diagnosis_attributes)['title']
+  %p
+    = JSON.parse(@patient_case.diagnosis_attributes)['description']
 
-%h2 Diagnosis:
-%strong= JSON.parse(@patient_case.diagnosis_attributes)['title']
-%p
-  = JSON.parse(@patient_case.diagnosis_attributes)['description']
+  %h2 Medications:
+  - JSON.parse(@patient_case.medication_attributes).each do |medication|
+    %h3
+      = medication['title']
+    %p= medication['description']
 
-%h2 Medications:
-- JSON.parse(@patient_case.medication_attributes).each do |medication|
-  %h3
-    = medication['title']
-  %p= medication['description']
-
-= render 'overview'
+  = render 'overview'

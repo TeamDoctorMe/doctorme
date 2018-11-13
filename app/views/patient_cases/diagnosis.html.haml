@@ -1,6 +1,10 @@
-Based on your symptoms, you have
--# = @patient_case.diagnosis.id
+= render 'nav'
+.container
+  %h1 Your Results
+  %p Based on your symptoms, you have
+  -# = @patient_case.diagnosis.id
 
-%br
+  %br
 
-= render 'form'
+  = render 'form'
+

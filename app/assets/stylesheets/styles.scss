@@ -1,8 +1,11 @@
 body {
   background-color: #f2fcff;
-  font-size: 16pt;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+  font-size: 16pt;
+    span {
+      color: lightgrey;
+    }
 }
 
 h1 {
@@ -22,10 +25,6 @@ a {
       color: grey;
       text-decoration: none;
     }
-}
-
-span {
-  color: lightgrey;
 }
 
 label {
@@ -51,12 +50,8 @@ label {
   padding-bottom: 20px;
   border-bottom: 1px solid #cee9f1;
     img {
-      max-width: 15%
+      max-width: 15%;
     }
-}
-
-.logo {
-    padding-left: 50px;
 }
 
 th {
@@ -72,6 +67,10 @@ tr.nested {
       padding-left: 30px;
     } 
   }
+}
+
+.logo {
+  padding-left: 50px;
 }
 
 .tier-2 {
@@ -114,3 +113,21 @@ tr.nested {
   height: 50px;
 }
 
+.list-inline-item {
+  display: block;
+  padding-left: 30px;
+  border: 1px solid #2298bc;
+  border-radius: 7px;
+  padding: 10px;
+  margin-bottom: 10px;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: #2298bc;
+      color: white;
+    }
+}
+
+.list-inline-item:not(:last-child) {
+  margin-right: 0px;
+}

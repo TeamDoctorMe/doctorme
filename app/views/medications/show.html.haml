@@ -1,26 +1,27 @@
-%p#notice= notice
+.container
+  %p#notice= notice
 
-%p
-  %b Title:
-  = @medication.title
-%p
-  %b Description:
-  = @medication.description
-%p
-  %b Age min:
-  = @medication.age_min
-%p
-  %b Age max:
-  = @medication.age_max
-%p
-  %b Gender:
-  = @medication.gender
+  %p
+    %b Title:
+    = @medication.title
+  %p
+    %b Description:
+    = @medication.description
+  %p
+    %b Age min:
+    = @medication.age_min
+  %p
+    %b Age max:
+    = @medication.age_max
+  %p
+    %b Gender:
+    = @medication.gender
 
-%p
-  %b Permitted Considerations:
-  - @medication.considerations.each do |consideration|
-    = consideration.title
+  %p
+    %b Permitted Considerations:
+    - @medication.considerations.each do |consideration|
+      = consideration.title
 
-= link_to 'Edit', edit_medication_path(@medication)
-\|
-= link_to 'Back', medications_path
+  = link_to 'Edit', edit_medication_path(@medication)
+  \|
+  = link_to 'Back', medications_path

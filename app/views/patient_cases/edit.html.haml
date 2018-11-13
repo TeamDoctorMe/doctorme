@@ -1,7 +1,9 @@
-%h1 Editing patient_case
+= render 'nav'
+.container
+  %h1 Editing patient_case
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Show', @patient_case
-\|
-= link_to 'Back', patient_cases_path
+  = link_to 'Show', @patient_case
+  \|
+  = link_to 'Back', patient_cases_path
