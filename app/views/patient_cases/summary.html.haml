@@ -1,13 +1,13 @@
 = render 'nav'
 .container
-  %h2 Diagnosis:
+  %h1 Your Result
   %strong= JSON.parse(@patient_case.diagnosis_attributes)['title']
   %p
     = JSON.parse(@patient_case.diagnosis_attributes)['description']
 
-  %h2 Medications:
+  %p Medications:
   - JSON.parse(@patient_case.medication_attributes).each do |medication|
-    %h3
+    %p
       = medication['title']
     %p= medication['description']
 

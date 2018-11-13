@@ -42,6 +42,7 @@ label {
   box-shadow: 0px 0px 2px 2px rgba(169,169,169,0.1);
   align-items: center;
   padding: 50px;
+  position: relative;
 }
 
 .nav {
@@ -94,6 +95,7 @@ tr.nested {
 .btn {
   background-color: #9cce72;
   color: white;
+  padding: 10px 15px;
   border: none;
   margin: 15px 0 15px 0;
     &:hover,
@@ -130,4 +132,22 @@ tr.nested {
 
 .list-inline-item:not(:last-child) {
   margin-right: 0px;
+}
+
+.pagination {
+  position: absolute;
+  top: -15px;
+  left: 0px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+    li {
+      color: white;
+      background-color: #2298bc;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      margin: 0 30px;
+    }
 }
