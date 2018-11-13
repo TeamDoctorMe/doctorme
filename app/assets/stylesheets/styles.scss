@@ -1,11 +1,5 @@
 body {
   background-color: #f2fcff;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 16pt;
-    span {
-      color: lightgrey;
-    }
 }
 
 h1 {
@@ -17,12 +11,23 @@ h1 {
   margin-bottom: 0;
 }
 
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16pt;
+  text-align: center;
+  color: #808184;
+    span {
+      color: lightgrey;
+    }
+}
+
 a {
   color: lightgrey;
     &:hover,
     &:active,
     &:focus {
-      color: grey;
+      color: #808184;
       text-decoration: none;
     }
 }
@@ -33,7 +38,7 @@ label {
 
 .container {
   max-width: 600px;
-  margin: 60px auto 0;
+  margin: 60px auto;
   border: 1px solid #cee9f1;
   background-color: white;
   border-radius: 7px;
@@ -43,6 +48,10 @@ label {
   align-items: center;
   padding: 50px;
   position: relative;
+}
+
+.container.home {
+  margin: 115px auto;
 }
 
 .nav {
@@ -130,9 +139,13 @@ tr.nested {
     }
 }
 
-.list-inline-item:not(:last-child) {
-  margin-right: 0px;
+.list-inline-item {
+  a {
+    margin-left: 60px;
+  }
 }
+
+// :not(:last-child)
 
 .pagination {
   position: absolute;
@@ -150,4 +163,20 @@ tr.nested {
       text-align: center;
       margin: 0 30px;
     }
+}
+
+// #e3e3e3
+
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  img {
+    width: 40%;
+  }
+}
+
+.image-padding {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
