@@ -1,3 +1,64 @@
+body {
+  background-color: #f2fcff;
+  font-size: 16pt;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 20pt;
+  text-align: center;
+  color: #2298bc;
+  padding-bottom: 40px;
+  margin-bottom: 0;
+}
+
+a {
+  color: lightgrey;
+    &:hover,
+    &:active,
+    &:focus {
+      color: grey;
+      text-decoration: none;
+    }
+}
+
+span {
+  color: lightgrey;
+}
+
+label {
+  display: none;
+}
+
+.container {
+  max-width: 600px;
+  margin: 60px auto 0;
+  border: 1px solid #cee9f1;
+  background-color: white;
+  border-radius: 7px;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(169,169,169,0.1);
+  -moz-box-shadow: 0px 0px 2px 2px rgba(169,169,169,0.1);
+  box-shadow: 0px 0px 2px 2px rgba(169,169,169,0.1);
+  align-items: center;
+  padding: 50px;
+}
+
+.nav {
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #cee9f1;
+    img {
+      max-width: 15%
+    }
+}
+
+.logo {
+    padding-left: 50px;
+}
+
 th {
   text-align: left;
 }
@@ -30,3 +91,26 @@ tr.nested {
     display: block;
   }
 }
+
+.btn {
+  background-color: #9cce72;
+  color: white;
+  border: none;
+  margin: 15px 0 15px 0;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: #2298bc;
+  }
+}
+
+.form-inputs {
+  margin-bottom: 10px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  border: 1px solid #2298bc;
+  height: 50px;
+}
+

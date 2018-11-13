@@ -1,28 +1,29 @@
-%h1 Listing symptoms
+.container
+  %h1 Listing symptoms
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th Age min
-      %th Age max
-      %th Gender
-      %th Position
-      %th Parent
-      %th Diagnosis
-      %th
-      %th
-      %th
+  %table
+    %thead
+      %tr
+        %th Title
+        %th Description
+        %th Age min
+        %th Age max
+        %th Gender
+        %th Position
+        %th Parent
+        %th Diagnosis
+        %th
+        %th
+        %th
 
-  %tbody
-    - if @parent_symptom.present?
-      = render 'row', symptom: @parent_symptom
-    - @symptoms.each do |symptom|
-      = render 'row', symptom: symptom
-      - symptom.symptoms.each do |child_symptom|
-        = render 'row', symptom: child_symptom
+    %tbody
+      - if @parent_symptom.present?
+        = render 'row', symptom: @parent_symptom
+      - @symptoms.each do |symptom|
+        = render 'row', symptom: symptom
+        - symptom.symptoms.each do |child_symptom|
+          = render 'row', symptom: child_symptom
 
-%br
+  %br
 
-= link_to 'New Symptom', new_symptom_path
+  = link_to 'New Symptom', new_symptom_path
