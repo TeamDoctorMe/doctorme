@@ -1,4 +1,5 @@
 .container.home
   = image_tag("DoctorMeLogo.svg", class: "logo-home image-padding")
   %p Welcome! We'll help to diagnose your symptoms to get you to an over-the-counter solution, right here in our store.
-  %p.btn Let's Get Started
+  %p.btn
+    = link_to "Let's Get Started", new_patient_case_path

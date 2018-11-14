@@ -3,6 +3,7 @@ body {
 }
 
 h1 {
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 20pt;
   text-align: center;
@@ -15,19 +16,22 @@ p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
-  text-align: center;
   color: #808184;
-    span {
-      color: lightgrey;
-    }
+  text-align: center;
+}
+
+span {
+  color: #808184;
 }
 
 a {
-  color: lightgrey;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: #808184;
     &:hover,
     &:active,
     &:focus {
-      color: #808184;
+      color: #212529;
       text-decoration: none;
     }
 }
@@ -102,15 +106,20 @@ tr.nested {
 }
 
 .btn {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   background-color: #9cce72;
   color: white;
-  padding: 10px 15px;
+  padding: 10px 25px;
   border: none;
   margin: 15px 0 15px 0;
     &:hover,
     &:active,
     &:focus {
       background-color: #2298bc;
+  }
+  a {
+    color: white;
   }
 }
 
@@ -157,15 +166,14 @@ tr.nested {
     li {
       color: white;
       background-color: #2298bc;
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       text-align: center;
       margin: 0 30px;
+      padding-top: 4px;
     }
 }
-
-// #e3e3e3
 
 .home {
   display: flex;

@@ -25,8 +25,7 @@
         = f.association :considerations, collection: @considerations, as: :check_boxes
 
   .form-actions
-    = f.submit 'Test', class: 'btn'
-
+    = f.submit 'Begin Diagnosis', class: 'btn'
 
 = link_to 'Restart', new_patient_case_path
 %span
