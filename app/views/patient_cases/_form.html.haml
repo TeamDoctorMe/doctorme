@@ -6,7 +6,7 @@
   - unless @patient_case.id
     .form-inputs
       = f.input :gender, collection: Diagnosis.genders.keys[1..2], include_blank: 'Select Gender', input_html: { class: 'form-control' }
-      = f.input :age, collection: (0..120), prompt: 'Select Age', input_html: { class: 'form-control' }
+      = f.input :age, collection: (1..120), include_blank: 'Select Age', input_html: { class: 'form-control' }
 
   - else
     - unless @patient_case.symptom.present?
@@ -26,9 +26,12 @@
         = f.association :considerations, collection: @considerations, as: :check_boxes
 
   .center-btn
-    .btn
-      = link_to "Back", :back
-    = f.submit 'Next', class: 'btn'
+    - if @patient_case.new_record?
+      = f.submit 'Begin Diagnosis', class: 'btn'
+    - else
+      .btn
+        = link_to "Back", :back
+      = f.submit 'Next', class: 'btn'
 
 
 / = link_to 'Restart', new_patient_case_path
