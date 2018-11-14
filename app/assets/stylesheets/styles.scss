@@ -188,6 +188,13 @@ tr.nested {
     }
 }
 
+.pagination:hover {
+  li {
+    color: white;
+    background-color: #2298bc;
+  }
+}
+
 .home {
   display: flex;
   flex-wrap: wrap;
