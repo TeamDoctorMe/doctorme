@@ -24,6 +24,12 @@
       .form-inputs
         = f.association :considerations, collection: @considerations, as: :check_boxes
 
+  .nav-buttons
+    .btn
+      %a Back
+    .btn
+      %a Next
+
   .form-actions
     = f.submit 'Begin Diagnosis', class: 'btn'
 

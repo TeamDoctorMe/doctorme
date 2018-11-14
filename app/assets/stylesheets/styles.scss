@@ -138,7 +138,7 @@ tr.nested {
   padding-left: 30px;
   border: 1px solid #2298bc;
   border-radius: 7px;
-  padding: 10px;
+  padding: 15px 10px;
   margin-bottom: 10px;
     &:hover,
     &:active,
@@ -148,13 +148,19 @@ tr.nested {
     }
 }
 
-.list-inline-item {
-  a {
-    margin-left: 60px;
+.list-inline-item a {
+  margin-left: 60px;
+    &:hover,
+    &:active,
+    &:focus {
+      color: white;
+    }
   }
-}
 
-// :not(:last-child)
+
+.list-inline-item:not(:last-child) {
+  margin-right: 0px;
+}
 
 .pagination {
   position: absolute;
@@ -187,4 +193,15 @@ tr.nested {
 .image-padding {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.nav-buttons {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  .btn {
+    margin: 0 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+  }
 }
