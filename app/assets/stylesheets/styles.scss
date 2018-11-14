@@ -110,9 +110,11 @@ tr.nested {
   font-weight: 400;
   background-color: #9cce72;
   color: white;
-  padding: 10px 25px;
+  padding: 10px 50px;
   border: none;
-  margin: 15px 0 15px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
     &:hover,
     &:active,
     &:focus {
@@ -121,6 +123,12 @@ tr.nested {
   a {
     color: white;
   }
+}
+
+.center-btn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .form-inputs {
@@ -149,7 +157,6 @@ tr.nested {
 }
 
 .list-inline-item a {
-  margin-left: 60px;
     &:hover,
     &:active,
     &:focus {
@@ -170,8 +177,8 @@ tr.nested {
   display: flex;
   justify-content: center;
     li {
-      color: white;
-      background-color: #2298bc;
+      color: #E3E3E3;
+      background-color: #E3E3E3;
       width: 35px;
       height: 35px;
       border-radius: 50%;
@@ -204,4 +211,11 @@ tr.nested {
     padding-right: 40px;
     padding-left: 40px;
   }
+}
+
+i.fas.fa-circle {
+  color: #C4F1FF;
+  font-size: 15pt;
+  margin-left: 10px;
+  margin-right: 10px;
 }

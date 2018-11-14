@@ -13,6 +13,7 @@
       %ul.list-inline
         - @symptoms.each do |symptom|
           %li.list-inline-item.symptom-tier{ id: symptom.id }
+            %i.fas.fa-circle
             - if symptom.symptoms.count == 0
               = link_to symptom.title, patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id
             - else
@@ -24,8 +25,11 @@
       .form-inputs
         = f.association :considerations, collection: @considerations, as: :check_boxes
 
-  .form-actions.text-center
-    = f.submit 'Begin Diagnosis', class: 'btn'
+  .center-btn
+    .btn
+      = link_to "Back", :back
+    = f.submit 'Next', class: 'btn'
+
 
 / = link_to 'Restart', new_patient_case_path
 / %span
