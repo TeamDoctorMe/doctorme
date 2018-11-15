@@ -1,14 +1,22 @@
 = render 'nav'
-.container
+.container.results
   %h1 Your Result
+  %p Based on your selections and exclusions, we've identified the following products that are available in the store.
+  .result-image
+    = image_tag("Sudafed")
+  %hr
   %strong= JSON.parse(@patient_case.diagnosis_attributes)['title']
   %p
     = JSON.parse(@patient_case.diagnosis_attributes)['description']
 
-  %p Medications:
+  %p
   - JSON.parse(@patient_case.medication_attributes).each do |medication|
     %p
       = medication['title']
     %p= medication['description']
 
-  = render 'overview'
+  .center-btn
+    %p.btn
+      = link_to "Start Over", new_patient_case_path
+
+/ = render 'overview'

@@ -20,10 +20,6 @@ p {
   text-align: center;
 }
 
-span {
-  color: #808184;
-}
-
 a {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -42,7 +38,7 @@ a {
 
 .container {
   max-width: 600px;
-  margin: 60px auto;
+  margin: 44px auto;
   border: 1px solid #cee9f1;
   background-color: white;
   border-radius: 7px;
@@ -64,8 +60,16 @@ a {
   }
 }
 
+#notice {
+  padding-top: 30px;
+}
+
+.warning {
+  color: red;
+}
+
 .container-no-nav {
-  margin: 155px auto;
+  margin: 200px auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -106,8 +110,16 @@ tr.nested {
 }
 
 .check_boxes {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16pt;
+  font-weight: 400;
   span.checkbox {
     display: block;
+    margin-bottom: 10px;
+    border: 1px solid #2298bc;
+    height: 50px;
+    border-radius: 7px;
+    padding-left: 20px;
   }
 }
 
@@ -147,6 +159,11 @@ tr.nested {
   height: 50px;
 }
 
+label {
+  padding-top: 7px;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .list-inline-item {
   display: block;
   padding-left: 30px;
@@ -170,6 +187,9 @@ tr.nested {
   }
 }
 
+abbr {
+  display: none;
+}
 
 .list-inline-item:not(:last-child) {
   margin-right: 0px;
@@ -222,4 +242,25 @@ i.fas.fa-circle {
   font-size: 15pt;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.result-image {
+  display: flex;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  justify-content: center;
+  img {
+    display: block;
+    max-width: auto;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+  }
+}
+
+.results strong {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  color: #2298bc;
 }
