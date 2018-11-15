@@ -125,7 +125,7 @@ tr.nested {
 
 .btn {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   background-color: #9cce72;
   color: white;
   padding: 10px 50px;
@@ -154,12 +154,13 @@ tr.nested {
   border: 1px solid #9cce72;
   a {
     color: #9cce72;
+    font-weight: 600;
   }
 }
 
 .read-more-btn {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   background-color: #2298bc;
   color: white;
   padding: 10px 50px;
@@ -194,11 +195,15 @@ label {
 
 .list-inline-item {
   display: block;
-  padding-left: 30px;
   border: 1px solid #2298bc;
   border-radius: 7px;
-  padding: 15px 10px;
   margin-bottom: 10px;
+  max-width: auto;
+  padding: 10px;
+  p {
+    margin-bottom: 0;
+    color: #808184;
+  }
   &:hover,
   &:active,
   &:focus {
