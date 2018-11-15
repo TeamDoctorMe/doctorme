@@ -1,7 +1,7 @@
 = render 'nav'
 .container
   %ul.pagination
-    %li 1
+    %li{class: ('active' if is_active_link?(symptoms_patient_case_path, :inclusive))} 1
     %li 2
     %li 3
     %li 4

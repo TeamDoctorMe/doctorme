@@ -149,6 +149,34 @@ tr.nested {
   justify-content: center;
 }
 
+.btn-white {
+  background-color: white;
+  border: 1px solid #9cce72;
+  a {
+    color: #9cce72;
+  }
+}
+
+.read-more-btn {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  background-color: #2298bc;
+  color: white;
+  padding: 10px 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+  border-radius: 7px;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #9cce72;
+  }
+  a {
+    color: white;
+  }
+}
+
 .form-inputs {
   margin-bottom: 10px;
 }
@@ -211,13 +239,10 @@ abbr {
     text-align: center;
     margin: 0 30px;
     padding-top: 4px;
-  }
-}
-
-.pagination:hover {
-  li {
-    color: white;
-    background-color: #2298bc;
+    &.active {
+      color: white;
+      background-color: #2298bc;
+    }
   }
 }
 

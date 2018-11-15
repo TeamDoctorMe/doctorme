@@ -28,6 +28,8 @@ gem "haml-rails", "~> 1.0"
 gem 'simple_form'
 gem 'friendly_id', '~> 5.2.0'
 
+gem 'active_link_to'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

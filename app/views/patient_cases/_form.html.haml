@@ -5,19 +5,21 @@
 
   - unless @patient_case.id
     .form-inputs
-      = f.input :gender, collection: Diagnosis.genders.keys[1..2], include_blank: 'Select Gender', input_html: { class: 'form-control' }
-      = f.input :age, collection: (1..120), include_blank: 'Select Age', input_html: { class: 'form-control' }
+      = f.input :gender, collection: Diagnosis.genders.keys[1..2], label: false, include_blank: 'Select Gender', input_html: { class: 'form-control' }
+      = f.input :age, collection: (1..120), label: false, include_blank: 'Select Age', input_html: { class: 'form-control' }
 
   - else
     - unless @patient_case.symptom.present?
       %ul.list-inline
         - @symptoms.each do |symptom|
-          %li.list-inline-item.symptom-tier{ id: symptom.id }
-            %i.fas.fa-circle
-            - if symptom.symptoms.count == 0
-              = link_to symptom.title, patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id
-            - else
-              = link_to symptom.title, url_for(symptom_id: symptom.id), id: symptom.id
+          - if symptom.symptoms.count == 0
+            = link_to patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id do
+              %li.list-inline-item.symptom-tier{ id: symptom.id }
+                %i.fas.fa-circle= symptom.title
+          - else
+            = link_to url_for(symptom_id: symptom.id), id: symptom.id do
+              %li.list-inline-item.symptom-tier{ id: symptom.id }
+                %i.fas.fa-circle= symptom.title
 
       .form-inputs
         = f.input :symptom_id, as: :hidden
@@ -29,7 +31,7 @@
     - if @patient_case.new_record?
       = f.submit 'Begin Diagnosis', class: 'btn'
     - else
-      .btn
+      .btn.btn-white
         = link_to "Back", :back
       = f.submit 'Next', class: 'btn'
 
