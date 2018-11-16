@@ -272,7 +272,7 @@ abbr {
   }
 }
 
-.result-image {
+.col-2-image {
   display: flex;
   margin-bottom: 20px;
   margin-top: 40px;
@@ -286,9 +286,25 @@ abbr {
   }
 }
 
+.col-3-image img {
+    max-width: auto;
+    max-height: 400px;
+}
+
+.align-text-left p {
+  text-align: left;
+  padding-left: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .results strong {
   display: flex;
   justify-content: center;
   text-transform: uppercase;
   color: #2298bc;
+}
+
+.row {
+  text-align: left;
 }

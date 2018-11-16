@@ -89,4 +89,19 @@ Symptom.where.not(parent_id: nil).each do |symptom|
       diagnosis: Diagnosis.all.shuffle.first
     },
   ])
+
+  third_tier_symptoms = symptom.symptoms.create([
+    {
+      title: "Option A",
+      diagnosis: Diagnosis.all.shuffle.first
+    },
+    {
+      title: "Option B",
+      diagnosis: Diagnosis.all.shuffle.first
+    },
+    {
+      title: "Option C",
+      diagnosis: Diagnosis.all.shuffle.first
+    }
+  ])
 end

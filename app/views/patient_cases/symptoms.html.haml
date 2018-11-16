@@ -2,9 +2,12 @@
 .container
   %ul.pagination
     %li{class: ('active' if is_active_link?(symptoms_patient_case_path, :inclusive))} 1
-    %li 2
+    %li{class: ('active' if is_active_link?(symptoms_patient_case_path, :inclusive))} 2
     %li 3
     %li 4
     
-  %h1 Select a Primary Complaint Area
+  - if params[:symptom_id].present?
+    %h1 What's bothering you?
+  - else
+    %h1 Select a Primary Complaint Area
   = render 'form'
