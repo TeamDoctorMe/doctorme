@@ -1,5 +1,5 @@
 = render 'nav'
-.container
+.container.container-3-column
   %p
     %b Gender:
     = @patient_case.gender
@@ -35,6 +35,7 @@
       = diagnosis.age_min
       = diagnosis.age_max
 
-  = link_to 'Edit', edit_patient_case_path(@patient_case)
-  \|
-  = link_to 'Back', patient_cases_path
+  .center-btn-container
+    = link_to 'Back to Products', summary_patient_case_path, class: 'btn btn-white'
+    = link_to 'Start Over', new_patient_case_path, class: 'btn'
+

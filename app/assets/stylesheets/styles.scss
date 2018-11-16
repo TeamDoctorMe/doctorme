@@ -32,6 +32,11 @@ a {
   }
 }
 
+label {
+  font-family: 'Open Sans', sans-serif;
+  color: #808184;
+}
+
 .display-none {
   display: none;
 }
@@ -169,21 +174,6 @@ tr.nested {
   height: 50px;
 }
 
-label {
-  padding-top: 7px;
-  font-family: 'Open Sans', sans-serif;
-  display: block;
-  font-weight: 400;
-  border-radius: 7px;
-  padding: 15px;
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: #2298bc;
-    color: white;
-  }
-}
-
 .list-inline-item {
   display: block;
   font-weight: 400;
@@ -219,13 +209,18 @@ label {
   display: none;
 }
 
-.check_boxes {
-  span.checkbox {
-    display: block;
-    margin-bottom: 10px;
-    border: 1px solid #2298bc;
-    border-radius: 7px;
-    padding-left: 20px;
+.checkbox label {
+  padding-top: 7px;
+  border: 1px solid #2298bc;
+  display: block;
+  font-weight: 400;
+  border-radius: 7px;
+  padding: 15px;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #2298bc;
+    color: white;
   }
 }
 
