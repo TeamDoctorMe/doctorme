@@ -28,16 +28,10 @@
       .form-inputs
         = f.association :considerations, collection: @considerations, as: :check_boxes
 
-  .center-btn
+  .center-btn-container
     - if @patient_case.new_record?
       = f.submit 'Begin Diagnosis', class: 'btn'
     - else
       
-      = link_to "Back", :back, class: 'btn-white'
+      = link_to 'Back', :back, class: 'btn btn-white'
       = f.submit 'Next', class: 'btn'
-
-
-/ = link_to 'Restart', new_patient_case_path
-/ %span
-/   |
-/ = render 'overview'

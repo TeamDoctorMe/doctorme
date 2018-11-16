@@ -1,5 +1,5 @@
 = render 'nav'
-.container-summary.results
+.container.container-3-column.results
   %h1 Your Result
   %p Based on your selections and exclusions, we've identified the following products that are available in the store.
 
@@ -17,12 +17,10 @@
           = medication['title']
         %p= medication['description']
 
-        .center-btn
+        .center-btn-container
           %p.btn.read-more-btn
             = link_to "Read More", new_patient_case_path
 
-  .center-btn
+  .center-btn-container
     %p.btn
       = link_to "Start Over", new_patient_case_path
-
-/ = render 'overview'
