@@ -1,5 +1,5 @@
 = render 'nav'
-.container.results
+.container-summary.results
   %h1 Your Result
   %p Based on your selections and exclusions, we've identified the following products that are available in the store.
   .result-image
@@ -12,12 +12,15 @@
   .row
     - JSON.parse(@patient_case.medication_attributes).each do |medication|
       .col-lg-4
+        .result-image
+          = image_tag("Sudafed")
+        %hr
         %p
           = medication['title']
         %p= medication['description']
 
         .center-btn
-          %p.read-more-btn
+          %p.btn.read-more-btn
             = link_to "Read More", new_patient_case_path
 
   .center-btn

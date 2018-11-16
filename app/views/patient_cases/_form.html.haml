@@ -32,8 +32,8 @@
     - if @patient_case.new_record?
       = f.submit 'Begin Diagnosis', class: 'btn'
     - else
-      .btn.btn-white
-        = link_to "Back", :back
+      
+      = link_to "Back", :back, class: 'btn-white'
       = f.submit 'Next', class: 'btn'
 
 
