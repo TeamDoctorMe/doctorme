@@ -109,24 +109,6 @@ tr.nested {
   display: none;
 }
 
-.admin-process-check {
-  display: none;
-}
-
-.check_boxes {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16pt;
-  font-weight: 400;
-  span.checkbox {
-    display: block;
-    margin-bottom: 10px;
-    border: 1px solid #2298bc;
-    height: 50px;
-    border-radius: 7px;
-    padding-left: 20px;
-  }
-}
-
 .btn {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
@@ -181,6 +163,8 @@ tr.nested {
 
 .form-control {
   margin-bottom: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   border: 1px solid #2298bc;
   height: 50px;
 }
@@ -188,14 +172,25 @@ tr.nested {
 label {
   padding-top: 7px;
   font-family: 'Open Sans', sans-serif;
+  display: block;
+  font-weight: 400;
+  border-radius: 7px;
+  padding: 15px;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #2298bc;
+    color: white;
+  }
 }
 
 .list-inline-item {
   display: block;
+  font-weight: 400;
   border: 1px solid #2298bc;
   border-radius: 7px;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 15px;
   &:hover,
   &:active,
   &:focus {
@@ -206,13 +201,13 @@ label {
 
 .list-inline-bullet {
   position: relative;
-  padding-left: 40px;
+  padding-left: 50px;
   &::before {
     content: ' ';
     display: inline-block;
     position: absolute;
     background-color: white;
-    border: 1px solid #2298bc;
+    border: 1px solid #82cde4;
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -220,6 +215,19 @@ label {
   }
 }
 
+.admin-process-check {
+  display: none;
+}
+
+.check_boxes {
+  span.checkbox {
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #2298bc;
+    border-radius: 7px;
+    padding-left: 20px;
+  }
+}
 
 abbr {
   display: none;
@@ -231,6 +239,7 @@ abbr {
 
 .pagination {
   position: absolute;
+  font-weight: 600;
   top: -15px;
   left: 0px;
   width: 600px;

@@ -15,12 +15,12 @@
           - if symptom.symptoms.count == 0
             %li
               = link_to patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id, class: 'list-inline-item symptom-tier list-inline-bullet' do
-                = symptom.title
+                .ml-2= symptom.title
 
           - else
             %li
               = link_to url_for(symptom_id: symptom.id), id: symptom.id, class: 'list-inline-item symptom-tier list-inline-bullet' do
-                = symptom.title
+                .ml-2= symptom.title
 
       .form-inputs
         = f.input :symptom_id, as: :hidden
