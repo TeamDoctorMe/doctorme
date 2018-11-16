@@ -13,14 +13,14 @@
       %ul.list-inline
         - @symptoms.each do |symptom|
           - if symptom.symptoms.count == 0
-            = link_to patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id do
-              %li.list-inline-item.symptom-tier{ id: symptom.id }
-                %p= symptom.title
+            %li
+              = link_to patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id, class: 'list-inline-item symptom-tier list-inline-bullet' do
+                = symptom.title
 
           - else
-            = link_to url_for(symptom_id: symptom.id), id: symptom.id do
-              %li.list-inline-item.symptom-tier{ id: symptom.id }
-                %p= symptom.title
+            %li
+              = link_to url_for(symptom_id: symptom.id), id: symptom.id, class: 'list-inline-item symptom-tier list-inline-bullet' do
+                = symptom.title
 
       .form-inputs
         = f.input :symptom_id, as: :hidden
