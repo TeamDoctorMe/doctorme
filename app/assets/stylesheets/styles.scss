@@ -201,8 +201,6 @@ tr.nested {
   }
 }
 
-
-
 .form-inputs {
   margin-bottom: 10px;
 }
@@ -227,20 +225,19 @@ label {
   padding: 10px;
   p {
     margin-bottom: 0;
+    text-align: left;
     color: #808184;
+    &:hover,
+    &:active,
+    &:focus {
+    background-color: #2298bc;
+    color: white;
+    }
   }
   &:hover,
   &:active,
   &:focus {
     background-color: #2298bc;
-    color: white;
-  }
-}
-
-.list-inline-item a {
-  &:hover,
-  &:active,
-  &:focus {
     color: white;
   }
 }
@@ -290,13 +287,6 @@ abbr {
     padding-right: 40px;
     padding-left: 40px;
   }
-}
-
-i.fas.fa-circle {
-  color: #C4F1FF;
-  font-size: 15pt;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .result-image {
