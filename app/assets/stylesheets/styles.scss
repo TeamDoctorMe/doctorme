@@ -258,7 +258,7 @@ tr.nested {
 
 .checkbox {
   input {
-    margin-right: 5px;
+    margin-right: 10px;
   }
   label {
     padding-top: 7px;
@@ -323,23 +323,17 @@ tr.nested {
   }
 }
 
-.col-2-image {
-  display: flex;
-  margin-bottom: 20px;
-  margin-top: 40px;
-  justify-content: center;
-  img {
-    display: block;
-    max-width: auto;
-    max-height: 80px;
-    width: auto;
-    height: auto;
-  }
+.col-2-image img {
+  display: block;
+  max-width: auto;
+  max-height: 400px;
+  width: auto;
+  height: auto;
 }
 
 .col-3-image img {
-    max-width: auto;
-    max-height: 400px;
+    max-width: 100%;
+    max-height: 150px;
 }
 
 .align-text-left p {
