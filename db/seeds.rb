@@ -9,7 +9,7 @@ Diagnosis.create([
 ])
 
 Medication.create([
-  { title: 'Tylenol',             description: 'Acetaminophen. It can treat minor aches and pains, and reduces fever.' },
+  { title: 'Tylenol',             description: 'Acetaminophen. It can treat minor aches and pains.' },
   { title: 'Advil',               description: 'It can treat minor aches and pains, and reduces fever.' },
   { title: 'X-lax',               description: 'In treatment of poo-poo problems.' },
   { title: 'Flintstone Vitamins', description: 'In treatment of pretty much nothing.',       age_min: 0, age_max: 18 },

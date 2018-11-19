@@ -129,6 +129,7 @@ tr.nested {
   &:active,
   &:focus {
     background-color: #2298bc;
+    color: white;
   }
   a {
     color: white;
@@ -171,6 +172,8 @@ tr.nested {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   border: 1px solid #2298bc;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 50px;
 }
 
