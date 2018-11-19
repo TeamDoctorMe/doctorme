@@ -1,0 +1,30 @@
+.container
+  %h1 Patient Cases
+
+  %table.table
+    %thead
+      %tr
+        %th Gender
+        %th Age
+        %th Symptom
+        %th Diagnosis
+        %th Medications
+        %th
+
+    %tbody
+      - @patient_cases.each do |patient_case|
+        %tr
+          %td= patient_case.gender
+          %td= patient_case.age
+          %td
+            = patient_case.symptom.title if patient_case.symptom
+            .small
+              = patient_case.symptom.hierarchy_tree.map {|p| "#{p.title}"}.join(' > ') if patient_case.symptom
+          %td
+            = JSON.parse(patient_case.diagnosis_attributes)['title'] if patient_case.diagnosis_attributes
+          %td= JSON.parse(patient_case.medication_attributes).map {|m| m['title']}.join(', ') if patient_case.medication_attributes
+          %td= link_to 'Show', patient_case
+
+  %br
+
+  = link_to 'New Patient case', new_patient_case_path, class: 'btn btn-primary'

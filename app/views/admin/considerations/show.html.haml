@@ -1,0 +1,18 @@
+.container
+  %p
+    %b Title:
+    = @consideration.title
+  %p
+    %b Exit:
+    = @consideration.exit
+  %p
+    %b Age min:
+    = @consideration.age_min
+  %p
+    %b Age max:
+    = @consideration.age_max
+  %p
+    %b Gender:
+    = @consideration.gender
+
+  = link_to 'Edit', edit_admin_consideration_path(@consideration)

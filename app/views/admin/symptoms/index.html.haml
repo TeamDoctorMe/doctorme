@@ -1,0 +1,34 @@
+.container
+  %h1 Symptoms
+
+  %table.table
+    %thead
+      %tr
+        %th Title
+        %th Description
+        %th Age min
+        %th Age max
+        %th Gender
+        %th Position
+        %th Parent
+        %th Diagnosis
+        %th
+        %th
+        %th
+
+    %tbody
+      - @symptoms.group_by(&:parent).each do |parent, symptoms|
+        - if parent.present?
+          - parent.hierarchy_tree.each do |parent|
+            = render 'row', symptom: parent
+
+        - if @current_symptom.present?
+          = render 'row', symptom: @current_symptom
+
+        - symptoms.each do |symptom|
+          = render 'row', symptom: symptom
+
+
+  %br
+
+  = link_to 'New Symptom', new_admin_symptom_path, class: 'btn btn-primary'

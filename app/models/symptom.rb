@@ -18,11 +18,18 @@ class Symptom < ApplicationRecord
   end
 
   def nested_class
-    if parent.present? and parent.parent.present?
-      'nested nested-2x'
-    elsif parent.present?
-      'nested'
+    "nested nested-#{level}x"
+  end
+
+  def hierarchy_tree
+    group = Array.new
+
+    if parent.present?
+      group = parent.hierarchy_tree.push(parent)
+      # group = group.push(parent.hierarchy_tree) if parent.hierarchy_tree.present?
     end
+    
+    group
   end
 
 end

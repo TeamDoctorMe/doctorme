@@ -1,0 +1,17 @@
+-# frozen_string_literal: true
+= simple_form_for([:admin, @symptom]) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :title
+    = f.input :description
+    = f.input :age_min
+    = f.input :age_max
+    = f.input :gender
+    = f.input :position
+    = f.input :parent_id
+    = f.association :diagnosis
+
+  .form-actions
+    = f.button :submit

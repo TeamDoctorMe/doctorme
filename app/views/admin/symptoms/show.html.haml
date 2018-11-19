@@ -1,0 +1,27 @@
+.container
+  %p
+    %b Title:
+    = @symptom.title
+  %p
+    %b Description:
+    = @symptom.description
+  %p
+    %b Age min:
+    = @symptom.age_min
+  %p
+    %b Age max:
+    = @symptom.age_max
+  %p
+    %b Gender:
+    = @symptom.gender
+  %p
+    %b Position:
+    = @symptom.position
+  %p
+    %b Parent:
+    = @symptom.parent_id
+  %p
+    %b Diagnosis:
+    = @symptom.diagnosis
+
+  = link_to 'Edit', edit_admin_symptom_path(@symptom)

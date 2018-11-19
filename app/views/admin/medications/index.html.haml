@@ -1,0 +1,30 @@
+.container
+  %h1 Medications
+
+  %table.table
+    %thead
+      %tr
+        %th Title
+        %th Age min
+        %th Age max
+        %th Gender
+        %th Permitted Considerations
+        %th
+        %th
+        %th
+
+    %tbody
+      - @medications.each do |medication|
+        %tr
+          %td= medication.title
+          %td= medication.age_min
+          %td= medication.age_max
+          %td= medication.gender
+          %td= medication.considerations.map { |c| c.title }
+          %td= link_to 'Show', admin_medication_path(medication)
+          %td= link_to 'Edit', edit_admin_medication_path(medication)
+          %td= link_to 'Destroy', admin_medication_path(medication), method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Medication', new_admin_medication_path, class: 'btn btn-primary'

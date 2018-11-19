@@ -46,12 +46,24 @@ th {
 }
 
 tr.nested {
-  td:first-child {
-    padding-left: 15px;
+  &.nested-1x {
+    td:first-child {
+      padding-left: 15px;
+    }
   }
   &.nested-2x {
     td:first-child {
       padding-left: 30px;
+    } 
+  }
+  &.nested-3x {
+    td:first-child {
+      padding-left: 45px;
+    } 
+  }
+  &.nested-4x {
+    td:first-child {
+      padding-left: 60px;
     } 
   }
 }
@@ -85,8 +97,11 @@ tr.nested {
   display: none;
 }
 
-.container {
+.container-sm {
   max-width: 600px;
+}
+
+.container {
   margin: 95px auto;
   border: 1px solid #cee9f1;
   background-color: white;
