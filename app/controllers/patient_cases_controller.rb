@@ -1,5 +1,5 @@
 class PatientCasesController < ApplicationController
-  before_action :set_patient_case, only: [:show, :symptoms, :diagnosis, :summary, :edit, :update, :destroy]
+  before_action :set_patient_case, only: [:show, :symptoms, :diagnosis, :last_step, :summary, :edit, :update, :destroy]
 
   # GET /patient_cases
   # GET /patient_cases.json
@@ -18,6 +18,10 @@ class PatientCasesController < ApplicationController
 
   def diagnosis
     _ensure_symptoms
+  end
+
+  def last_step
+    @symptoms = @potential_diagnosis
   end
 
   def summary
@@ -51,7 +55,8 @@ class PatientCasesController < ApplicationController
   # PATCH/PUT /patient_cases/1.json
   def update
     redirect_path = symptoms_patient_case_path(@patient_case)  if params[:patient_case][:age].present?
-    redirect_path = diagnosis_patient_case_path(@patient_case) if params[:patient_case][:symptom_id].present?
+    redirect_path = last_step_patient_case_path(@patient_case) if params[:patient_case][:symptom_id].present?
+    redirect_path = diagnosis_patient_case_path(@patient_case) if params[:patient_case][:diagnosis_id].present?
     redirect_path = summary_patient_case_path(@patient_case)   if params[:patient_case][:consideration_ids].present?
 
     if @patient_case.update(patient_case_params)
@@ -75,8 +80,9 @@ class PatientCasesController < ApplicationController
     def set_patient_case
       @patient_case = PatientCase.find(params[:id])
 
-      @potential_symptoms = @patient_case.potential_symptoms
-      @considerations     = @patient_case.potential_considerations
+      @potential_symptoms  = @patient_case.potential_symptoms
+      @potential_diagnosis = @patient_case.potential_diagnosis
+      @considerations      = @patient_case.potential_considerations
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

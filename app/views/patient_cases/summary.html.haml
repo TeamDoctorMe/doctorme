@@ -1,13 +1,26 @@
+= render 'nav'
+.container.container-3-column.results
+  %h1 Your Result
+  %p Based on your selections and exclusions, we've identified the following products that are available in the store.
 
-%h2 Diagnosis:
-%strong= JSON.parse(@patient_case.diagnosis_attributes)['title']
-%p
-  = JSON.parse(@patient_case.diagnosis_attributes)['description']
+  %strong.medcine-title= JSON.parse(@patient_case.diagnosis_attributes)['title']
+  %p
+    = JSON.parse(@patient_case.diagnosis_attributes)['description']
 
-%h2 Medications:
-- JSON.parse(@patient_case.medication_attributes).each do |medication|
-  %h3
-    = medication['title']
-  %p= medication['description']
+  .row
+    - JSON.parse(@patient_case.medication_attributes).first(3).each do |medication|
+      .col-lg-4
+        .col-2-image
+          = image_tag("Sudafed")
+        %hr
+        %p
+          = medication['title']
+        %p= medication['description']
 
-= render 'overview'
+        .center-btn-container
+          %p.btn.read-more-btn
+            = link_to "Read More", patient_case_path
+
+  .center-btn-container
+    %p.btn
+      = link_to "Start Over", new_patient_case_path

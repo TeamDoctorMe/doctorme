@@ -1,21 +1,20 @@
-%p#notice= notice
+.container
+  %p
+    %b Title:
+    = @diagnosis.title
+  %p
+    %b Description:
+    = @diagnosis.description
+  %p
+    %b Age min:
+    = @diagnosis.age_min
+  %p
+    %b Age max:
+    = @diagnosis.age_max
+  %p
+    %b Gender:
+    = @diagnosis.gender
 
-%p
-  %b Title:
-  = @diagnosis.title
-%p
-  %b Description:
-  = @diagnosis.description
-%p
-  %b Age min:
-  = @diagnosis.age_min
-%p
-  %b Age max:
-  = @diagnosis.age_max
-%p
-  %b Gender:
-  = @diagnosis.gender
-
-= link_to 'Edit', edit_diagnosis_path(@diagnosis)
-\|
-= link_to 'Back', diagnoses_path
+  = link_to 'Edit', edit_diagnosis_path(@diagnosis)
+  \|
+  = link_to 'Back', diagnoses_path

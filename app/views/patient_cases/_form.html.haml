@@ -5,18 +5,22 @@
 
   - unless @patient_case.id
     .form-inputs
-      = f.input :gender, collection: Diagnosis.genders.keys[1..2], include_blank: false, input_html: { class: 'form-control' }
-      = f.input :age, collection: (0..120), include_blank: false, input_html: { class: 'form-control' }
+      = f.input :gender, collection: Diagnosis.genders.keys[1..2], label: false, include_blank: 'Select Gender', input_html: { class: 'form-control' }
+      = f.input :age, collection: (0..120), label: false, include_blank: 'Select Age', input_html: { class: 'form-control' }
 
   - else
     - unless @patient_case.symptom.present?
       %ul.list-inline
         - @symptoms.each do |symptom|
-          %li.list-inline-item.symptom-tier{ id: symptom.id }
-            - if symptom.symptoms.count == 0
-              = link_to symptom.title, patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id
-            - else
-              = link_to symptom.title, url_for(symptom_id: symptom.id), id: symptom.id
+          - if symptom.symptoms.count == 0
+            %li
+              = link_to patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id, class: 'list-inline-item symptom-tier list-inline-bullet' do
+                .ml-2= symptom.title
+
+          - else
+            %li
+              = link_to url_for(symptom_id: symptom.id), id: symptom.id, class: 'list-inline-item symptom-tier list-inline-bullet' do
+                .ml-2= symptom.title
 
       .form-inputs
         = f.input :symptom_id, as: :hidden
@@ -24,9 +28,10 @@
       .form-inputs
         = f.association :considerations, collection: @considerations, as: :check_boxes
 
-  .form-actions
-    = f.button :submit, class: 'btn btn-primary'
-
-= link_to 'Restart', new_patient_case_path
-
-= render 'overview'
+  .center-btn-container
+    - if @patient_case.new_record?
+      = f.submit 'Begin Diagnosis', class: 'btn'
+    - else
+      
+      = link_to 'Back', :back, class: 'btn btn-white'
+      = f.submit 'Next', class: 'btn'

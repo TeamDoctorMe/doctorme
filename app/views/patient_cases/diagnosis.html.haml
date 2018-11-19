@@ -1,6 +1,9 @@
-Based on your symptoms, you have
--# = @patient_case.diagnosis.id
+= render 'nav'
+.container
+  %h1.warning WARNING!
+  %p Do any of the following apply to you?
+  -# = @patient_case.diagnosis.id
 
-%br
+  %br
 
-= render 'form'
+  = render 'form'
