@@ -1,0 +1,14 @@
+.container
+  %h1 Your Results
+  .row
+    .col-sm-4
+      .col-2-image
+        = image_tag("Xlear")
+    .col-sm-8.align-text-left
+      %p
+        %b Medication details:&nbsp;
+        = @medication.description
+
+  .center-btn-container
+    = link_to 'Back to Products', summary_patient_case_path, class: 'btn btn-white'
+    = link_to 'Start Over', new_patient_case_path, class: 'btn'

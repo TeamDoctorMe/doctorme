@@ -5,7 +5,20 @@
     %li{ class: "#{'active' if @symptoms.first.level == 3}" } 3
     %li{ class: "#{'active' if @symptoms.first.level == 4}" } 4
     
-  %h1 What's bothering you?
+  - if @symptoms.first.level == 1
+    %h1 Select a Primary Complaint Area
+
+  - elsif @symptoms.first.level == 2
+    %h1 What's Bothering You?
+    %p Select all that apply
+
+  - elsif @symptoms.first.level == 3
+    %h1 Select Symptom Complaints
+    %p Select all that apply
+
+  - elsif @symptoms.first.level == 4
+    %h1 One Last Step!
+    %p Based on your previous selections, we've narrowed it down to the following. Choose what feels the most likely.
 
   = simple_form_for('', url: url_for(), method: :get) do |f|
     %ul.list-inline

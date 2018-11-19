@@ -5,22 +5,22 @@
         = image_tag("Xlear")
     .col-sm-8.align-text-left
       %p
-        %b Gender:
+        %b Gender:&nbsp;
         = @patient_case.gender
       %p
-        %b Age:
+        %b Age:&nbsp;
         = @patient_case.age
       %p
-        %b Symptom:
+        %b Symptom:&nbsp;
         = @patient_case.symptom
       %p
-        %b Diagnosis:
+        %b Diagnosis:&nbsp;
         = @patient_case.diagnosis
       %p
-        %b Diagnosis attributes:
-        = @patient_case.diagnosis_attributes
+        %b Diagnosis attributes:&nbsp;
+        = JSON.parse(@patient_case.diagnosis_attributes)['description']
       %p
-        %b Medication attributes:
+        %b Medication attributes:&nbsp;
         = @patient_case.medication_attributes
 
       %p

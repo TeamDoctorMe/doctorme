@@ -65,7 +65,7 @@ Symptom.create!([
 ])
 
 Symptom.where.not(parent_id: nil).each do |symptom|
-  final_symptoms = symptom.symptoms.create([
+  third_tier_symptoms = symptom.symptoms.create([
     {
       title: "Level 1 #{symptom.title}",
       diagnosis: Diagnosis.all.shuffle.first
@@ -90,18 +90,23 @@ Symptom.where.not(parent_id: nil).each do |symptom|
     },
   ])
 
-  third_tier_symptoms = symptom.symptoms.create([
-    {
-      title: "Option A",
-      diagnosis: Diagnosis.all.shuffle.first
-    },
-    {
-      title: "Option B",
-      diagnosis: Diagnosis.all.shuffle.first
-    },
-    {
-      title: "Option C",
-      diagnosis: Diagnosis.all.shuffle.first
-    }
-  ])
+  third_tier_symptoms.each do |s2|
+    s2.symptoms.create([
+      {
+        title: "Option A #{s2.parent.title}",
+        description: 'This is a description about Option A.',
+        diagnosis: Diagnosis.all.shuffle.first
+      },
+      {
+        title: "Option B #{s2.parent.title}",
+        description: 'This is a description about Option B.',
+        diagnosis: Diagnosis.all.shuffle.first
+      },
+      {
+        title: "Option B #{s2.parent.title}",
+        description: 'This is a description about Option B.',
+        diagnosis: Diagnosis.all.shuffle.first
+      }
+    ])
+  end
 end
