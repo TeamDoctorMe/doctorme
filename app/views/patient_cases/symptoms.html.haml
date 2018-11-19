@@ -1,13 +1,26 @@
-= render 'nav'
 .container
   %ul.pagination
-    %li{class: ('active' if is_active_link?(symptoms_patient_case_path, :inclusive))} 1
-    %li{class: ('active' if is_active_link?(symptoms_patient_case_path, :inclusive))} 2
-    %li 3
-    %li 4
+    %li{ class: "#{'active' if @symptoms.first.level == 1}" } 1
+    %li{ class: "#{'active' if @symptoms.first.level == 2}" } 2
+    %li{ class: "#{'active' if @symptoms.first.level == 3}" } 3
+    %li{ class: "#{'active' if @symptoms.first.level == 4}" } 4
     
-  - if params[:symptom_id].present?
-    %h1 What's bothering you?
-  - else
-    %h1 Select a Primary Complaint Area
-  = render 'form'
+  %h1 What's bothering you?
+
+  = simple_form_for('', url: url_for(), method: :get) do |f|
+    %ul.list-inline
+      - @symptoms.each do |symptom|
+        %li
+          = link_to '#', class: 'list-inline-item symptom-tier list-inline-bullet symptom-select', data: { symptom: symptom.id } do
+            = symptom.title
+
+    .form-inputs
+      = f.input :symptom_id, as: :hidden, input_html: { class: 'symptom-value' }
+
+    .center-btn-container
+      - if @patient_case.new_record?
+        = f.submit 'Begin Diagnosis', class: 'btn'
+      - else
+        
+        = link_to 'Back', :back, class: 'btn btn-white'
+        = f.submit 'Next', class: 'btn'

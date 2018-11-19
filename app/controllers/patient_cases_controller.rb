@@ -13,24 +13,29 @@ class PatientCasesController < ApplicationController
   end
 
   def symptoms
-    @symptoms = params[:symptom_id] ? @potential_symptoms.where(parent_id: params[:symptom_id]) : @potential_symptoms.base
+    if params[:symptom_id].present?
+      @symptoms = @potential_symptoms.where(parent_id: params[:symptom_id])
+    else
+      @symptoms = @potential_symptoms.base
+    end
+
+    if @symptoms.count == 0
+      redirect_to diagnosis_patient_case_path(@patient_case, symptom_id: params[:symptom_id])
+    end
   end
 
   def diagnosis
-    _ensure_symptoms
-  end
-
-  def last_step
-    @symptoms = @potential_diagnosis
+    _ensure_symptom
   end
 
   def summary
-    # _ensure_considersations
   end
 
   # GET /patient_cases/new
   def new
-    @patient_case = PatientCase.new
+    @patient_case        = PatientCase.new
+    @patient_case.age    = 35
+    @patient_case.gender = 'female'
   end
 
   # GET /patient_cases/1/edit
@@ -55,7 +60,6 @@ class PatientCasesController < ApplicationController
   # PATCH/PUT /patient_cases/1.json
   def update
     redirect_path = symptoms_patient_case_path(@patient_case)  if params[:patient_case][:age].present?
-    redirect_path = last_step_patient_case_path(@patient_case) if params[:patient_case][:symptom_id].present?
     redirect_path = diagnosis_patient_case_path(@patient_case) if params[:patient_case][:diagnosis_id].present?
     redirect_path = summary_patient_case_path(@patient_case)   if params[:patient_case][:consideration_ids].present?
 
@@ -96,15 +100,9 @@ class PatientCasesController < ApplicationController
                                            consideration_ids: [])
     end
 
-    def _ensure_symptoms
-      unless @patient_case.symptom.present?
+    def _ensure_symptom
+      unless params[:symptom_id].present?
         redirect_to symptoms_patient_case_path(@patient_case), notice: 'Describe your symptoms.'
-      end
-    end
-
-    def _ensure_considersations
-      if @patient_case.symptom.present? and @patient_case.considerations.empty?
-        redirect_to diagnosis_patient_case_path(@patient_case), notice: 'Checkout Your diagnosis.'
       end
     end
 end

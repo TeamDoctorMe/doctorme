@@ -4,7 +4,6 @@ Rails.application.routes.draw do
       get :symptoms
       get :diagnosis
       get :summary
-      get :last_step
     end
   end
 

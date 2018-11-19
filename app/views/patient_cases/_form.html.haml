@@ -9,29 +9,14 @@
       = f.input :age, collection: (0..120), label: false, include_blank: 'Select Age', input_html: { class: 'form-control' }
 
   - else
-    - unless @patient_case.symptom.present?
-      %ul.list-inline
-        - @symptoms.each do |symptom|
-          - if symptom.symptoms.count == 0
-            %li
-              = link_to patient_case_path(patient_case: {symptom_id: symptom.id}), method: :put, id: symptom.id, class: 'list-inline-item symptom-tier list-inline-bullet' do
-                .ml-2= symptom.title
+    .form-inputs
+      = f.association :considerations, collection: @considerations, as: :check_boxes, label: false
 
-          - else
-            %li
-              = link_to url_for(symptom_id: symptom.id), id: symptom.id, class: 'list-inline-item symptom-tier list-inline-bullet' do
-                .ml-2= symptom.title
+    = f.input :symptom_id, as: :hidden, input_html: { value: params[:symptom_id] }
 
-      .form-inputs
-        = f.input :symptom_id, as: :hidden
-    - else
-      .form-inputs
-        = f.association :considerations, collection: @considerations, as: :check_boxes
-
-  .center-btn-container
+  .text-center
     - if @patient_case.new_record?
       = f.submit 'Begin Diagnosis', class: 'btn'
     - else
-      
       = link_to 'Back', :back, class: 'btn btn-white'
       = f.submit 'Next', class: 'btn'

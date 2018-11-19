@@ -19,4 +19,8 @@
 
 
   %body
+    = render 'layouts/nav'
     = yield
+
+    - if @patient_case.present?
+      = render 'patient_cases/overview'

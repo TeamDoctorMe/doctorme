@@ -1,0 +1,8 @@
+- unless @disable_navigation
+  %nav
+    = link_to (image_tag "DoctorMeLogo"), root_path, class: "logo nav"
+
+  - if notice
+    %p#notice= notice
+  - if alert
+    %p#notice= alert
