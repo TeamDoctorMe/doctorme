@@ -29,11 +29,9 @@ class Admin::ConsiderationsController < AdminController
 
     respond_to do |format|
       if @consideration.save
-        format.html { redirect_to @consideration, notice: 'Consideration was successfully created.' }
-        format.json { render :show, status: :created, location: @consideration }
+        format.html { redirect_to admin_considerations_path, notice: 'Consideration was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @consideration.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,11 +41,9 @@ class Admin::ConsiderationsController < AdminController
   def update
     respond_to do |format|
       if @consideration.update(consideration_params)
-        format.html { redirect_to @consideration, notice: 'Consideration was successfully updated.' }
-        format.json { render :show, status: :ok, location: @consideration }
+        format.html { redirect_to admin_considerations_path, notice: 'Consideration was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @consideration.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,8 +53,7 @@ class Admin::ConsiderationsController < AdminController
   def destroy
     @consideration.destroy
     respond_to do |format|
-      format.html { redirect_to considerations_url, notice: 'Consideration was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to admin_considerations_url(@consideration), notice: 'Consideration was successfully destroyed.' }
     end
   end
 

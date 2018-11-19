@@ -21,26 +21,3 @@
   %body
     = render 'layouts/nav'
     = yield
-
-    - if @patient_case.present?
-      = render 'public/patient_cases/overview'
-
-    %ul.list-inline.text-center
-      %li.list-inline-item
-        = link_to 'Considerations', admin_considerations_path
-      %li.list-inline-item
-        |
-      %li.list-inline-item
-        = link_to 'Symptoms', admin_symptoms_path
-      %li.list-inline-item
-        |
-      %li.list-inline-item
-        = link_to 'Medications', admin_medications_path
-      %li.list-inline-item
-        |
-      %li.list-inline-item
-        = link_to 'Diagnoses', admin_diagnoses_path
-      %li.list-inline-item
-        |
-      %li.list-inline-item
-        = link_to 'Patient Cases', admin_patient_cases_path

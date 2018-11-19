@@ -29,11 +29,9 @@ class Admin::DiagnosesController < AdminController
 
     respond_to do |format|
       if @diagnosis.save
-        format.html { redirect_to @diagnosis, notice: 'Diagnosis was successfully created.' }
-        format.json { render :show, status: :created, location: @diagnosis }
+        format.html { redirect_to admin_diagnoses_path, notice: 'Diagnosis was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @diagnosis.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,11 +41,9 @@ class Admin::DiagnosesController < AdminController
   def update
     respond_to do |format|
       if @diagnosis.update(diagnosis_params)
-        format.html { redirect_to @diagnosis, notice: 'Diagnosis was successfully updated.' }
-        format.json { render :show, status: :ok, location: @diagnosis }
+        format.html { redirect_to admin_diagnoses_path, notice: 'Diagnosis was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @diagnosis.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,8 +53,7 @@ class Admin::DiagnosesController < AdminController
   def destroy
     @diagnosis.destroy
     respond_to do |format|
-      format.html { redirect_to diagnoses_url, notice: 'Diagnosis was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to admin_diagnoses_path, notice: 'Diagnosis was successfully destroyed.' }
     end
   end
 

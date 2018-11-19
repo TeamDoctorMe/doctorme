@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+  
   scope module: 'public' do
     resources :patient_cases,
               except: [:index] do

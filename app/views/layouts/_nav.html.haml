@@ -1,8 +1,28 @@
 - unless @disable_navigation
-  %nav
-    = link_to (image_tag "DoctorMeLogo"), root_path, class: "logo nav"
+  %nav.navbar.navbar-expand-lg.navbar-light
+    = link_to (image_tag "DoctorMeLogo"), root_path, class: "navbar-brand"
+
+    - if current_user and current_user.is_admin
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      
+      #navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.ml-auto
+          %li.nav-item
+            = link_to 'Considerations', admin_considerations_path, class: 'nav-link'
+          %li.nav-item
+            = link_to 'Symptoms', admin_symptoms_path, class: 'nav-link'
+          %li.nav-item
+            = link_to 'Medications', admin_medications_path, class: 'nav-link'
+          %li.nav-item
+            = link_to 'Diagnoses', admin_diagnoses_path, class: 'nav-link'
+          %li.nav-item
+            = link_to 'Patient Cases', admin_patient_cases_path, class: 'nav-link'
 
   - if notice
     %p#notice= notice
   - if alert
     %p#notice= alert
+
+- if @patient_case.present? and current_user and current_user.is_admin
+  = render 'public/patient_cases/overview'

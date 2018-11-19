@@ -34,11 +34,9 @@ class Admin::SymptomsController < AdminController
 
     respond_to do |format|
       if @symptom.save
-        format.html { redirect_to @symptom, notice: 'Symptom was successfully created.' }
-        format.json { render :show, status: :created, location: @symptom }
+        format.html { redirect_to admin_symptoms_path, notice: 'Symptom was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @symptom.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,11 +46,9 @@ class Admin::SymptomsController < AdminController
   def update
     respond_to do |format|
       if @symptom.update(symptom_params)
-        format.html { redirect_to @symptom, notice: 'Symptom was successfully updated.' }
-        format.json { render :show, status: :ok, location: @symptom }
+        format.html { redirect_to admin_symptoms_path, notice: 'Symptom was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @symptom.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,8 +58,7 @@ class Admin::SymptomsController < AdminController
   def destroy
     @symptom.destroy
     respond_to do |format|
-      format.html { redirect_to symptoms_url, notice: 'Symptom was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to admin_symptoms_path, notice: 'Symptom was successfully destroyed.' }
     end
   end
 
