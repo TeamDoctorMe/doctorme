@@ -26,7 +26,6 @@ class Symptom < ApplicationRecord
 
     if parent.present?
       group = parent.hierarchy_tree.push(parent)
-      # group = group.push(parent.hierarchy_tree) if parent.hierarchy_tree.present?
     end
     
     group

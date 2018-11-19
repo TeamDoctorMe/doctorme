@@ -223,13 +223,15 @@ tr.nested {
   height: 50px;
 }
 
-.list-inline-item {
+.list-inline-bullet {
+  position: relative;
   display: block;
   font-weight: 400;
   border: 1px solid #2298bc;
   border-radius: 7px;
   margin-bottom: 10px;
   padding: 15px;
+  padding-left: 50px;
   &:hover,
   &:active,
   &:focus,
@@ -241,11 +243,6 @@ tr.nested {
     background-color: #82cde4;
     border-color: white;
   }
-}
-
-.list-inline-bullet {
-  position: relative;
-  padding-left: 50px;
   &::before {
     content: ' ';
     display: inline-block;
