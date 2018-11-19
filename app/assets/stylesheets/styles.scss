@@ -16,14 +16,14 @@ p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
-  color: #808184;
+  color: #b2b3b5;
   text-align: center;
 }
 
 a {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
-  color: #808184;
+  color: #b2b3b5;
   &:hover,
   &:active,
   &:focus {
@@ -34,7 +34,7 @@ a {
 
 label {
   font-family: 'Open Sans', sans-serif;
-  color: #808184;
+  color: #b2b3b5;
 }
 
 abbr {
@@ -344,6 +344,7 @@ tr.nested {
 }
 
 .results strong {
+  font-size: 16pt;
   display: flex;
   justify-content: center;
   text-transform: uppercase;
@@ -352,4 +353,16 @@ tr.nested {
 
 .row {
   text-align: left;
+}
+
+.brand-name {
+  color: #808184;
+  font-size: 20pt;
+}
+
+hr {
+  width: 150px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
