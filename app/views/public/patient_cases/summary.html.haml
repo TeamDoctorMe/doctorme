@@ -1,7 +1,6 @@
 .container.results
   %h1 Your Result
   %p Based on your selections and exclusions, we've identified the following products that are available in the store.
-
   %strong.medicine-title= JSON.parse(@patient_case.diagnosis_attributes)['title']
   %p= JSON.parse(@patient_case.diagnosis_attributes)['description']
   %br
