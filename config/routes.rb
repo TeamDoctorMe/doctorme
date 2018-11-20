@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   root 'public/pages#home'
   get 'consult_doctor', to: 'public/pages#consult_doctor'
+  get 'no_remedies', to: 'public/pages#no_remedies'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
