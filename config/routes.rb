@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   end
 
   root 'public/pages#home'
-  get 'consult_doctor', to: 'public/pages#consult_doctor'
-  get 'no_remedies', to: 'public/pages#no_remedies'
+  get 'consult_doctor', to: 'public/patient_cases#consult_doctor'
+  get 'no_remedies', to: 'public/patient_cases#no_remedies'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
