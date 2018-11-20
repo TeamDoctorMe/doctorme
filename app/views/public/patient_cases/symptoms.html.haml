@@ -10,11 +10,9 @@
 
   - elsif @symptoms.first.level == 2
     %h1 What's Bothering You?
-    %p Select all that apply
 
   - elsif @symptoms.first.level == 3
     %h1 Select Symptom Complaints
-    %p Select all that apply
 
   - elsif @symptoms.first.level == 4
     %h1 One Last Step!
@@ -25,7 +23,9 @@
       - @symptoms.each do |symptom|
         %li
           = link_to '#', class: 'list-inline-item symptom-tier list-inline-bullet symptom-select', data: { symptom: symptom.id } do
-            = symptom.title
+            %strong= symptom.title
+            %br
+            = symptom.description
 
     .form-inputs
       = f.input :symptom_id, as: :hidden, input_html: { class: 'symptom-value' }
