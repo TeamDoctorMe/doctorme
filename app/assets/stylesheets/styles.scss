@@ -8,7 +8,7 @@ h1 {
   font-size: 20pt;
   text-align: center;
   color: #2298bc;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   margin-bottom: 0;
 }
 
@@ -16,14 +16,14 @@ p {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 16pt;
-  color: #808184;
+  color: #b2b3b5;
   text-align: center;
 }
 
 a {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
-  color: #808184;
+  color: #b2b3b5;
   &:hover,
   &:active,
   &:focus {
@@ -34,11 +34,18 @@ a {
 
 label {
   font-family: 'Open Sans', sans-serif;
-  color: #808184;
+  color: #b2b3b5;
 }
 
 abbr {
   display: none;
+}
+
+hr {
+  width: 150px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 th {
@@ -209,6 +216,11 @@ tr.nested {
   }
 }
 
+.btn-start-over {
+  padding: 15px 80px;
+  margin-top: 50px;
+}
+
 .form-inputs {
   margin-bottom: 10px;
 }
@@ -258,7 +270,7 @@ tr.nested {
 
 .checkbox {
   input {
-    margin-right: 5px;
+    margin-right: 10px;
   }
   label {
     padding-top: 7px;
@@ -323,23 +335,17 @@ tr.nested {
   }
 }
 
-.col-2-image {
-  display: flex;
-  margin-bottom: 20px;
-  margin-top: 40px;
-  justify-content: center;
-  img {
-    display: block;
-    max-width: auto;
-    max-height: 80px;
-    width: auto;
-    height: auto;
-  }
+.col-2-image img {
+  display: block;
+  max-width: auto;
+  max-height: 400px;
+  width: auto;
+  height: auto;
 }
 
 .col-3-image img {
-    max-width: auto;
-    max-height: 400px;
+    max-width: 100%;
+    max-height: 150px;
 }
 
 .align-text-left p {
@@ -350,6 +356,7 @@ tr.nested {
 }
 
 .results strong {
+  font-size: 16pt;
   display: flex;
   justify-content: center;
   text-transform: uppercase;
@@ -358,4 +365,9 @@ tr.nested {
 
 .row {
   text-align: left;
+}
+
+.brand-name {
+  color: #808184;
+  font-size: 20pt;
 }

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   }
   
   scope module: 'public' do
+    resources :medications, only: [:show]
     resources :patient_cases,
               except: [:index] do
       member do
