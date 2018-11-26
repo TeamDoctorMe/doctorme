@@ -1,9 +1,13 @@
 .container.container-sm
   %ul.pagination
-    %li{ class: "#{'active' if @symptoms.first.level == 1}" } 1
-    %li{ class: "#{'active' if @symptoms.first.level == 2}" } 2
-    %li{ class: "#{'active' if @symptoms.first.level == 3}" } 3
-    %li{ class: "#{'active' if @symptoms.first.level == 4}" } 4
+    %li
+      .circle{ class: "#{'active' if @symptoms.first.level == 1}" } 1
+    %li
+      .circle{ class: "#{'active' if @symptoms.first.level == 2}" } 2
+    %li
+      .circle{ class: "#{'active' if @symptoms.first.level == 3}" } 3
+    %li
+      .circle{ class: "#{'active' if @symptoms.first.level == 4}" } 4
     
   - if @symptoms.first.level == 1
     %h1 Select a Primary Complaint Area
