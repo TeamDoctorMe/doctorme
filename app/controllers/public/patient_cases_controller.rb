@@ -22,6 +22,12 @@ class Public::PatientCasesController < ApplicationController
     _ensure_symptom
   end
 
+  def consult_doctor 
+  end
+
+  def no_remedies 
+  end
+
   def summary
   end
 
@@ -53,12 +59,14 @@ class Public::PatientCasesController < ApplicationController
   # PATCH/PUT /patient_cases/1
   # PATCH/PUT /patient_cases/1.json
   def update
+
     redirect_path = symptoms_patient_case_path(@patient_case)  if params[:patient_case][:age].present?
     redirect_path = diagnosis_patient_case_path(@patient_case) if params[:patient_case][:diagnosis_id].present?
     redirect_path = summary_patient_case_path(@patient_case)   if params[:patient_case][:consideration_ids].present?
+    redirect_path = consult_doctor_path(@patient_case)         if params[:patient_case][:consideration_ids].present? && params[:patient_case][:consideration_ids].count > 1
 
     if @patient_case.update(patient_case_params)
-      redirect_to redirect_path, notice: 'Patient case was successfully updated.'
+      redirect_to redirect_path
     else
       render :edit
     end

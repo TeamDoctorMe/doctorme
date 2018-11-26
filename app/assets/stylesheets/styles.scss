@@ -371,3 +371,9 @@ tr.nested {
   color: #808184;
   font-size: 20pt;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    max-width: 90vw;
+  }
+}

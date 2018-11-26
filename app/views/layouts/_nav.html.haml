@@ -23,6 +23,3 @@
     %p#notice= notice
   - if alert
     %p#notice= alert
-
-- if @patient_case.present? and current_user and current_user.is_admin
-  = render 'public/patient_cases/overview'
