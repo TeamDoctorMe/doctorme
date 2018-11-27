@@ -1,3 +1,7 @@
+User.create([
+  { email: 'morgan@polarnotion.com', password: '123123123', is_admin: true }
+])
+
 Diagnosis.create([
   { title: 'Sinus Infection',     description: 'When your sinus canal is infected',  gender: :both },
   { title: 'Migraine',            description: 'When your head hurts real bad.',     gender: :both },
