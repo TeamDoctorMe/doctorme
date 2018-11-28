@@ -63,7 +63,6 @@ class Public::PatientCasesController < ApplicationController
     redirect_path = symptoms_patient_case_path(@patient_case)  if params[:patient_case][:age].present?
     redirect_path = diagnosis_patient_case_path(@patient_case) if params[:patient_case][:diagnosis_id].present?
     redirect_path = summary_patient_case_path(@patient_case)   if params[:patient_case][:consideration_ids].present?
-    redirect_path = consult_doctor_path(@patient_case)         if params[:patient_case][:consideration_ids].present? && params[:patient_case][:consideration_ids].count > 1
 
     if @patient_case.update(patient_case_params)
       redirect_to redirect_path
@@ -85,7 +84,6 @@ class Public::PatientCasesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_patient_case
       @patient_case = PatientCase.find(params[:id])
-
       @potential_symptoms  = @patient_case.potential_symptoms
       @potential_diagnosis = @patient_case.potential_diagnosis
       @considerations      = @patient_case.potential_considerations
