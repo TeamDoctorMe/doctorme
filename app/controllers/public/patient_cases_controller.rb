@@ -1,5 +1,5 @@
 class Public::PatientCasesController < ApplicationController
-  before_action :set_patient_case, only: [:show, :symptoms, :diagnosis, :last_step, :summary, :edit, :update, :destroy]
+  before_action :set_patient_case, only: [:show, :symptoms, :diagnosis, :last_step, :summary, :edit, :update, :destroy, :_confirm_assistance]
 
   # GET /patient_cases/1
   # GET /patient_cases/1.json
@@ -90,7 +90,7 @@ class Public::PatientCasesController < ApplicationController
     end
 
     def _confirm_assistance
-      if @patient_case.symptom.is_exit
+      if @patient_case.symptom.is_exit == true || @patient_case.considerations.where(is_exit: true).present?
         redirect_to consult_doctor_path
       end
     end
