@@ -89,6 +89,12 @@ class Public::PatientCasesController < ApplicationController
       @considerations      = @patient_case.potential_considerations
     end
 
+    def _confirm_assistance
+      if @patient_case.symptom.is_exit
+        redirect_to consult_doctor_path
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_case_params
       params.require(:patient_case).permit(:gender,
