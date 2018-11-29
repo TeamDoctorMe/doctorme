@@ -21,8 +21,11 @@
             .small
               = patient_case.symptom.hierarchy_tree.map {|p| "#{p.title}"}.join(' > ') if patient_case.symptom
           %td
-            = JSON.parse(patient_case.diagnosis_attributes)['title'] if patient_case.diagnosis_attributes
-          %td= JSON.parse(patient_case.medication_attributes).map {|m| m['title']}.join(', ') if patient_case.medication_attributes
+            - if patient_case.diagnosis_attributes.present? and JSON.parse(patient_case.diagnosis_attributes).present?
+              = JSON.parse(patient_case.diagnosis_attributes)['title'] if patient_case.diagnosis_attributes
+          %td
+            - if patient_case.medication_attributes.present? and JSON.parse(patient_case.medication_attributes).present?
+              = JSON.parse(patient_case.medication_attributes).map {|m| m['title']}.join(', ') if patient_case.medication_attributes
           %td= link_to 'Show', patient_case
 
   %br
