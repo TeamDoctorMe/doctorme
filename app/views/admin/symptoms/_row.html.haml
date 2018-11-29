@@ -6,7 +6,8 @@
   %td= symptom.gender
   %td= symptom.position
   %td= symptom.parent_id
-  %td= symptom.diagnosis
+  %td= symptom.diagnosis.title if symptom.diagnosis
+  %td= link_to 'Add Child Symptom', new_admin_symptom_path(parent_id: symptom)
   %td= link_to 'Show', admin_symptom_path(symptom)
   %td= link_to 'Edit', edit_admin_symptom_path(symptom)
   %td= link_to 'Destroy', admin_symptom_path(symptom), method: :delete, data: { confirm: 'Are you sure?' }

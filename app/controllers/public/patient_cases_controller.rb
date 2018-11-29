@@ -17,7 +17,7 @@ class Public::PatientCasesController < ApplicationController
 
     if @symptoms.count == 0
       @patient_case.symptom_id = params[:symptom_id]
-      @patient_case.save
+      @patient_case.save!
 
       redirect_to diagnosis_patient_case_path(@patient_case)
     end

@@ -65,6 +65,11 @@ class Admin::DiagnosesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def diagnosis_params
-      params.require(:diagnosis).permit(:title, :description, :age_min, :age_max, :gender)
+      params.require(:diagnosis).permit(:title,
+                                        :description,
+                                        :age_min,
+                                        :age_max,
+                                        :gender,
+                                        medication_ids: [])
     end
 end

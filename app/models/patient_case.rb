@@ -18,8 +18,12 @@ class PatientCase < ApplicationRecord
   end
 
   def potential_medications
-    meds = Medication.within_age_range(age).within_gender(gender)
-    
+    if symptom.present? and symptom.diagnosis.present?
+      meds = symptom.diagnosis.medications.within_age_range(age).within_gender(gender)
+    else
+      meds = Medication.within_age_range(age).within_gender(gender)
+    end
+      
     if considerations.present?
       medication_considerations = ConsiderationMedication.where(consideration_id: considerations.ids).pluck(:medication_id)
       matching_considerations   = medication_considerations.group_by { |x|x }.to_a.select {|f| f.last.count == considerations.ids.count }
@@ -31,7 +35,11 @@ class PatientCase < ApplicationRecord
   end
 
   def potential_diagnosis
-    Diagnosis.within_age_range(age).within_gender(gender)
+    if symptom
+      Diagnosis.where(id: symptom_id)
+    else
+      Diagnosis.within_age_range(age).within_gender(gender)
+    end
   end
 
   def potential_considerations

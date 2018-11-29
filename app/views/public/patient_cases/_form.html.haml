@@ -12,8 +12,6 @@
     .form-inputs
       = f.association :considerations, collection: @considerations, as: :check_boxes, label: false
 
-    = f.input :symptom_id, as: :hidden, input_html: { value: params[:symptom_id] }
-
   .text-center
     - if @patient_case.new_record?
       = f.submit 'Begin Diagnosis', class: 'btn'

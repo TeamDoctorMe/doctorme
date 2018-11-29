@@ -70,6 +70,7 @@ class Admin::MedicationsController < AdminController
                                          :age_min,
                                          :age_max,
                                          :gender,
-                                         consideration_ids: [])
+                                         consideration_ids: [],
+                                         diagnosis_ids: [])
     end
 end

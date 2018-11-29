@@ -12,6 +12,8 @@
       .col-sm-6
         = f.input :age_max, input_html: { class: 'form-control' }
     = f.input :gender, input_html: { class: 'form-control' }, collection: Diagnosis.genders.keys, include_blank: false
+
+    = f.association :diagnoses, as: :check_boxes
     = f.association :considerations, as: :check_boxes
 
   .form-actions

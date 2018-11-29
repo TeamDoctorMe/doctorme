@@ -21,6 +21,7 @@ class Admin::SymptomsController < AdminController
   # GET /symptoms/new
   def new
     @symptom = Symptom.new
+    @symptom.parent_id = params[:parent_id]
   end
 
   # GET /symptoms/1/edit
@@ -70,6 +71,14 @@ class Admin::SymptomsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def symptom_params
-      params.require(:symptom).permit(:title, :description, :age_min, :age_max, :gender, :position, :parent_id, :diagnosis_id)
+      params.require(:symptom).permit(:title,
+                                      :description,
+                                      :age_min,
+                                      :age_max,
+                                      :gender,
+                                      :position,
+                                      :parent_id,
+                                      :diagnosis_id,
+                                      :exit)
     end
 end
