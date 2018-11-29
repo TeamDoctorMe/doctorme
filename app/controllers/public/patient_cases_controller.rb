@@ -1,5 +1,6 @@
 class Public::PatientCasesController < ApplicationController
-  before_action :set_patient_case, only: [:show, :symptoms, :diagnosis, :last_step, :summary, :edit, :update, :destroy, :_confirm_assistance]
+  before_action :set_patient_case, only: [:show, :symptoms, :diagnosis, :last_step, :summary, :edit, :update, :destroy]
+  before_action :_confirm_assistance, except: [:new, :create, :consult_doctor, :destroy]
 
   # GET /patient_cases/1
   # GET /patient_cases/1.json
@@ -8,13 +9,17 @@ class Public::PatientCasesController < ApplicationController
 
   def symptoms
     if params[:symptom_id].present?
-      @symptoms = @potential_symptoms.where(parent_id: params[:symptom_id])
+      @parent_symptom = Symptom.find(params[:symptom_id])
+      @symptoms       = @potential_symptoms.where(parent_id: params[:symptom_id])
     else
       @symptoms = @potential_symptoms.base
     end
 
     if @symptoms.count == 0
-      redirect_to diagnosis_patient_case_path(@patient_case, symptom_id: params[:symptom_id])
+      @patient_case.symptom_id = params[:symptom_id]
+      @patient_case.save
+
+      redirect_to diagnosis_patient_case_path(@patient_case)
     end
   end
 
@@ -23,9 +28,6 @@ class Public::PatientCasesController < ApplicationController
   end
 
   def consult_doctor 
-  end
-
-  def no_remedies 
   end
 
   def summary
@@ -59,7 +61,6 @@ class Public::PatientCasesController < ApplicationController
   # PATCH/PUT /patient_cases/1
   # PATCH/PUT /patient_cases/1.json
   def update
-
     redirect_path = symptoms_patient_case_path(@patient_case)  if params[:patient_case][:age].present?
     redirect_path = diagnosis_patient_case_path(@patient_case) if params[:patient_case][:diagnosis_id].present?
     redirect_path = summary_patient_case_path(@patient_case)   if params[:patient_case][:consideration_ids].present?
@@ -83,14 +84,14 @@ class Public::PatientCasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_patient_case
-      @patient_case = PatientCase.find(params[:id])
+      @patient_case        = PatientCase.find(params[:id])
       @potential_symptoms  = @patient_case.potential_symptoms
       @potential_diagnosis = @patient_case.potential_diagnosis
       @considerations      = @patient_case.potential_considerations
     end
 
     def _confirm_assistance
-      if @patient_case.symptom.is_exit == true || @patient_case.considerations.where(is_exit: true).present?
+      unless @patient_case.is_assistable?
         redirect_to consult_doctor_path
       end
     end
@@ -107,7 +108,7 @@ class Public::PatientCasesController < ApplicationController
     end
 
     def _ensure_symptom
-      unless params[:symptom_id].present?
+      unless @patient_case.symptom.present?
         redirect_to symptoms_patient_case_path(@patient_case), notice: 'Describe your symptoms.'
       end
     end

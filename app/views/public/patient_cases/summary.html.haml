@@ -1,4 +1,4 @@
--if @patient_case.potential_medications.present?
+- if @patient_case.potential_medications.present?
   .container.results
     %h1 Your Result
     %p Based on your selections and exclusions, we've identified the following products that are available in the store.
@@ -22,5 +22,5 @@
     .text-center
       = link_to "Start Over", new_patient_case_path, class: 'btn btn-start-over'
 
--else
+- else
   = render "public/patient_cases/no_remedies"

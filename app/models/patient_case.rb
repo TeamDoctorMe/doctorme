@@ -38,6 +38,17 @@ class PatientCase < ApplicationRecord
     Consideration.within_age_range(age).within_gender(gender)
   end
 
+  def is_assistable?
+    exitable_symptom        = symptom.exit if symptom.present?
+    exitable_considerations = considerations.where(exit: true).present?
+
+    unless exitable_symptom == true || exitable_considerations == true
+      true
+    else
+      false
+    end
+  end
+
   private
 
   def _ensure_diagnosis

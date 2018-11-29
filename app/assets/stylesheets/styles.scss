@@ -75,6 +75,10 @@ tr.nested {
   }
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 .admin-verify {
   position: fixed;
   bottom: 0;
@@ -187,6 +191,12 @@ tr.nested {
   a {
     color: white;
   }
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: #9cce72;
+  border-color: #9cce72;
 }
 
 .center-btn-container {

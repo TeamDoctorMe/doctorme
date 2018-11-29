@@ -24,12 +24,12 @@ Medication.create([
 ])
 
 Consideration.create([
-  { title: 'Pregnant',                   gender: :female            },
-  { title: 'Recent Penal-augmentation',  gender: :male              },
-  { title: 'Organ Transplant',           gender: :both              },
-  { title: 'Substance Abuse',            gender: :both              },
-  { title: 'Concussion',                 gender: :both              },
-  { title: 'Chest Pains',                gender: :both,  exit: true },
+  { title: 'Pregnant',                   gender: :female,  exit: true },
+  { title: 'Recent Penal-augmentation',  gender: :male                },
+  { title: 'Organ Transplant',           gender: :both                },
+  { title: 'Substance Abuse',            gender: :both                },
+  { title: 'Concussion',                 gender: :both                },
+  { title: 'Chest Pains',                gender: :both,    exit: true },
 ])
 
 Symptom.create!([
@@ -66,6 +66,10 @@ Symptom.create!([
       { title: 'Adult only', age_min: 19, age_max: 120 },
     ])
   },
+  {
+    title: 'Convulsions',
+    exit: true
+  }
 ])
 
 Symptom.where.not(parent_id: nil).each do |symptom|

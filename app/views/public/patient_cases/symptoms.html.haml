@@ -23,7 +23,7 @@
     %p Based on your previous selections, we've narrowed it down to the following. Choose what feels the most likely.
 
   = simple_form_for('', url: url_for(), method: :get) do |f|
-    %ul.list-inline
+    %ul.list-inline.force-selection
       - @symptoms.each do |symptom|
         %li
           = link_to '#', class: 'list-inline-item symptom-tier list-inline-bullet symptom-select', data: { symptom: symptom.id } do
@@ -38,6 +38,10 @@
       - if @patient_case.new_record?
         = f.submit 'Begin Diagnosis', class: 'btn'
       - else
-        
-        = link_to 'Back', :back, class: 'btn btn-white'
-        = f.submit 'Next', class: 'btn'
+          
+        - if @parent_symptom.present?
+          = link_to 'Back', symptoms_patient_case_path(@patient_case, symptom_id: @parent_symptom.parent_id), class: 'btn btn-white'
+        - else
+          = link_to 'Back', new_patient_case_path, class: 'btn btn-white'
+
+        = f.submit 'Next', class: 'btn btn-primary'
