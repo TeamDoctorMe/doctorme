@@ -45,7 +45,62 @@ Symptom.create!([
     ])
   },
   {
-    title: 'Torso',
+    title: 'Chest',
+    symptoms: Symptom.create([
+      { title: 'Heart' },
+      { title: 'Lungs' },
+      { title: 'Ribs' },
+      { title: 'Shoulders' },
+      { title: 'Child only', age_min: 0, age_max: 18 },
+      { title: 'Adult only', age_min: 19, age_max: 120 },
+    ])
+  },
+  {
+    title: 'Buttocks',
+    symptoms: Symptom.create([
+      { title: 'Heart' },
+      { title: 'Lungs' },
+      { title: 'Ribs' },
+      { title: 'Shoulders' },
+      { title: 'Child only', age_min: 0, age_max: 18 },
+      { title: 'Adult only', age_min: 19, age_max: 120 },
+    ])
+  },
+  {
+    title: 'Back',
+    symptoms: Symptom.create([
+      { title: 'Heart' },
+      { title: 'Lungs' },
+      { title: 'Ribs' },
+      { title: 'Shoulders' },
+      { title: 'Child only', age_min: 0, age_max: 18 },
+      { title: 'Adult only', age_min: 19, age_max: 120 },
+    ])
+  },
+  {
+    title: 'Arms',
+    symptoms: Symptom.create([
+      { title: 'Heart' },
+      { title: 'Lungs' },
+      { title: 'Ribs' },
+      { title: 'Shoulders' },
+      { title: 'Child only', age_min: 0, age_max: 18 },
+      { title: 'Adult only', age_min: 19, age_max: 120 },
+    ])
+  },
+  {
+    title: 'Legs',
+    symptoms: Symptom.create([
+      { title: 'Heart' },
+      { title: 'Lungs' },
+      { title: 'Ribs' },
+      { title: 'Shoulders' },
+      { title: 'Child only', age_min: 0, age_max: 18 },
+      { title: 'Adult only', age_min: 19, age_max: 120 },
+    ])
+  },
+  {
+    title: 'Feet',
     symptoms: Symptom.create([
       { title: 'Heart' },
       { title: 'Lungs' },
@@ -65,10 +120,6 @@ Symptom.create!([
       { title: 'Child only', age_min: 0, age_max: 18 },
       { title: 'Adult only', age_min: 19, age_max: 120 },
     ])
-  },
-  {
-    title: 'Convulsions',
-    exit: true
   }
 ])
 
