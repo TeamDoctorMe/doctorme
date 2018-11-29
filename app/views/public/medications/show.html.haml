@@ -1,13 +1,9 @@
-.container
-  %h1 Your Results
-  .row
-    .col-sm-4
-      .col-2-image
-        = image_tag("Xlear")
-    .col-sm-8.align-text-left
-      %p
-        %b Medication details:&nbsp;
-        = @medication.description
+.container.container-sm.text-center
+  %h1= @medication.title
+  = image_tag @medication.image if @medication.image.attached?
+  %p
+    %b Medication details:&nbsp;
+    = @medication.description
 
   .center-btn-container
     = link_to 'Back to Products', :back, class: 'btn btn-white'
