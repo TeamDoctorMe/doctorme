@@ -20,18 +20,16 @@ class PatientCase < ApplicationRecord
   def potential_medications
     if symptom.present? and symptom.diagnosis.present?
       meds = symptom.diagnosis.medications.within_age_range(age).within_gender(gender)
-    else
-      meds = Medication.within_age_range(age).within_gender(gender)
-    end
       
-    if considerations.present?
-      medication_considerations = ConsiderationMedication.where(consideration_id: considerations.ids).pluck(:medication_id)
-      matching_considerations   = medication_considerations.group_by { |x|x }.to_a.select {|f| f.last.count == considerations.ids.count }
-      matching_medication_ids   = matching_considerations.map {|f| f.first} 
-      meds                      = meds.where(id: matching_medication_ids)
-    end
+      if considerations.present?
+        medication_considerations = ConsiderationMedication.where(consideration_id: considerations.ids).pluck(:medication_id)
+        matching_considerations   = medication_considerations.group_by { |x|x }.to_a.select {|f| f.last.count == considerations.ids.count }
+        matching_medication_ids   = matching_considerations.map {|f| f.first} 
+        meds                      = meds.where(id: matching_medication_ids)
+      end
 
-    meds
+      meds
+    end      
   end
 
   def potential_diagnosis
