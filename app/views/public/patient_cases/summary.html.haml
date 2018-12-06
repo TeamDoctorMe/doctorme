@@ -5,22 +5,34 @@
     %strong.medicine-title= JSON.parse(@patient_case.diagnosis_attributes)['title']
     %p= JSON.parse(@patient_case.diagnosis_attributes)['description']
     %br
-      
-    .row
-      - JSON.parse(@patient_case.medication_attributes).first(3).each do |medication|
-        .col-sm-4.text-center
-          .col-3-image
-            = image_tag("Sudafed")
-          %hr
-          %p.brand-name
-            = medication['title']
-          %p= medication['description']
 
-          .text-center
-            = link_to "Read More", medication_path(medication['id']), class: 'btn read-more-btn'
+    / Nav tabs
+    %ul.nav.nav-tabs{role: "tablist"}
+      %li.nav-item.flex-fill.text-center.bg-light
+        %a.nav-link.active{"data-toggle" => "tab", href: "#over-the-counter"} Over the Counter
+      %li.nav-item.flex-fill.text-center.bg-light
+        %a.nav-link{"data-toggle" => "tab", href: "#natural"} Natural
+      %li.nav-item.flex-fill.text-center.bg-light
+        %a.nav-link{"data-toggle" => "tab", href: "#preventative"} Preventative
 
-    .text-center
-      = link_to "Start Over", new_patient_case_path, class: 'btn btn-start-over'
+      / Tab panes
+    .tab-content
+      #over-the-counter.tab-pane.active
+        .row
+          - JSON.parse(@patient_case.medication_attributes).first(3).each do |medication|
+            .col-sm-4.text-center
+              .col-3-image
+                = image_tag("Sudafed")
+              %hr
+              %p.brand-name
+                = medication['title']
+              %p= medication['description']
+
+              .text-center
+                = link_to "Read More", medication_path(medication['id']), class: 'btn read-more-btn'
+
+        .text-center
+          = link_to "Start Over", new_patient_case_path, class: 'btn btn-start-over'
 
 -else
   = render "public/patient_cases/no_remedies"

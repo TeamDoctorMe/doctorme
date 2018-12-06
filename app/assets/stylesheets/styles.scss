@@ -372,6 +372,10 @@ tr.nested {
   font-size: 20pt;
 }
 
+.tab-content {
+  padding-top: 40px;
+} 
+
 @media only screen and (max-width: 600px) {
   .container {
     max-width: 90vw;
