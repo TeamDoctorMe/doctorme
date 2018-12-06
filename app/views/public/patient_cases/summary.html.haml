@@ -7,17 +7,17 @@
     %br
 
     / Nav tabs
-    %ul.nav.nav-tabs{role: "tablist"}
-      %li.nav-item.flex-fill.text-center.bg-light
-        %a.nav-link.active{"data-toggle" => "tab", href: "#over-the-counter"} Over the Counter
-      %li.nav-item.flex-fill.text-center.bg-light
-        %a.nav-link{"data-toggle" => "tab", href: "#natural"} Natural
-      %li.nav-item.flex-fill.text-center.bg-light
-        %a.nav-link{"data-toggle" => "tab", href: "#preventative"} Preventative
+    %ul#summary-tab.nav.nav-fill.nav-tabs{role: "tablist"}
+      %li.nav-item
+        %a#over-the-counter-tab.nav-link.active{"aria-controls" => "over-the-counter", "aria-selected" => "true", "data-toggle" => "tab", href: "#over-the-counter", role: "tab"} Over the Counter
+      %li.nav-item
+        %a#natural-tab.nav-link{"aria-controls" => "natural", "aria-selected" => "false", "data-toggle" => "tab", href: "#natural", role: "tab"} Natural
+      %li.nav-item
+        %a#preventative-tab.nav-link{"aria-controls" => "preventative", "aria-selected" => "false", "data-toggle" => "tab", href: "#preventative", role: "tab"} Preventative
 
-      / Tab panes
-    .tab-content
-      #over-the-counter.tab-pane.active
+    / Tab panes
+    #summary-tab-content.tab-content
+      #over-the-counter.tab-pane.fade.show.active{"aria-labelledby" => "over-the-counter-tab", role: "tabpanel"}
         .row
           - JSON.parse(@patient_case.medication_attributes).first(3).each do |medication|
             .col-sm-4.text-center
@@ -33,6 +33,12 @@
 
         .text-center
           = link_to "Start Over", new_patient_case_path, class: 'btn btn-start-over'
+
+      #natural.tab-pane.fade{"aria-labelledby" => "natural-tab", role: "tabpanel"} 
+        %h2 Natural Stuff
+
+      #preventative.tab-pane.fade{"aria-labelledby" => "preventative-tab", role: "tabpanel"} 
+        %h2 Preventative Stuff
 
 -else
   = render "public/patient_cases/no_remedies"
