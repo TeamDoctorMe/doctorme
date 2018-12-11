@@ -4,28 +4,43 @@
     %h1 Your Result
     %p Based on your selections and exclusions, we've identified the following products that are available in the store.
 
-    - if @patient_case.diagnosis_attributes.present? and JSON.parse(@patient_case.diagnosis_attributes).present?
-      %strong.medicine-title= JSON.parse(@patient_case.diagnosis_attributes)['title']
-      %p= JSON.parse(@patient_case.diagnosis_attributes)['description']
-      %br
-      
-    - if @patient_case.medication_attributes.present? and JSON.parse(@patient_case.medication_attributes).present?
-      .row
-        - JSON.parse(@patient_case.medication_attributes).first(3).each do |medication|
-          - med = Medication.find(medication['id'])
-          .col-sm-4.text-center
-            .col-3-image
-              = image_tag med.image if med.image.attached?
-            %hr
-            %p.brand-name
-              = medication['title']
-            %p= medication['description']
+    %strong.medicine-title= JSON.parse(@patient_case.diagnosis_attributes)['title']
+    %p= JSON.parse(@patient_case.diagnosis_attributes)['description']
+    %br
 
-            .text-center
-              = link_to "Read More", medication_path(medication['id']), class: 'btn read-more-btn'
+    / Nav tabs
+    %ul#summary-tab.nav.nav-fill.nav-tabs{role: "tablist"}
+      %li.nav-item
+        %a#over-the-counter-tab.nav-link.active{"aria-controls" => "over-the-counter", "aria-selected" => "true", "data-toggle" => "tab", href: "#over-the-counter", role: "tab"} Over the Counter
+      %li.nav-item
+        %a#natural-tab.nav-link{"aria-controls" => "natural", "aria-selected" => "false", "data-toggle" => "tab", href: "#natural", role: "tab"} Natural
+      %li.nav-item
+        %a#preventative-tab.nav-link{"aria-controls" => "preventative", "aria-selected" => "false", "data-toggle" => "tab", href: "#preventative", role: "tab"} Preventative
 
-    .text-center
-      = link_to "Start Over", new_patient_case_path, class: 'btn btn-start-over'
+    / Tab panes
+    #summary-tab-content.tab-content
+      #over-the-counter.tab-pane.fade.show.active{"aria-labelledby" => "over-the-counter-tab", role: "tabpanel"}
+        .row
+          - JSON.parse(@patient_case.medication_attributes).first(3).each do |medication|
+            .col-sm-4.text-center
+              .col-3-image
+                = image_tag med.image if med.image.attached?
+              %hr
+              %p.brand-name
+                = medication['title']
+              %p= medication['description']
+
+              .text-center
+                = link_to "Read More", medication_path(medication['id']), class: 'btn read-more-btn'
+
+        .text-center
+          = link_to "Start Over", new_patient_case_path, class: 'btn btn-start-over'
+
+      #natural.tab-pane.fade{"aria-labelledby" => "natural-tab", role: "tabpanel"} 
+        %h2 Natural Stuff
+
+      #preventative.tab-pane.fade{"aria-labelledby" => "preventative-tab", role: "tabpanel"} 
+        %h2 Preventative Stuff
 
 - else
   = render "public/patient_cases/no_remedies"
