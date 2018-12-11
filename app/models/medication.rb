@@ -9,6 +9,8 @@ class Medication < ApplicationRecord
   has_many :diagnosis_medications
   has_many :diagnoses, through: :diagnosis_medications
 
+  enum medication_type: [:over_counter, :natural, :preventative]
+
   validates :title,       presence: true
   validates :description, presence: true
 end

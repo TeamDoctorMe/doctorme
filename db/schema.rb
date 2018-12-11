@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_29_224413) do
+ActiveRecord::Schema.define(version: 2018_12_11_113107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2018_11_29_224413) do
     t.integer "gender", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "medication_type", default: 0
   end
 
   create_table "patient_cases", force: :cascade do |t|
