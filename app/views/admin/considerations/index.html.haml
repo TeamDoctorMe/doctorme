@@ -1,5 +1,5 @@
 .container
-  %h1 Exclusions
+  %h1= t('consideration').pluralize.capitalize
 
   %table.table
     %thead
@@ -27,4 +27,4 @@
 
   %br
 
-  = link_to 'New Exclusion', new_admin_consideration_path, class: 'btn btn-primary'
+  = link_to "New #{t('consideration').capitalize}", new_admin_consideration_path, class: 'btn btn-primary'
