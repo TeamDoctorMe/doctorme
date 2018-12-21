@@ -39,6 +39,6 @@
           = diagnosis.age_min
           = diagnosis.age_max
 
-  .center-btn-container
+  .center-btn-container{"data-turbolinks" => "false"}
     = link_to 'Back to Products', summary_patient_case_path, class: 'btn btn-white'
     = link_to 'Start Over', new_patient_case_path, class: 'btn'

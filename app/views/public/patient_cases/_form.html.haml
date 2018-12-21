@@ -12,7 +12,7 @@
     .form-inputs
       = f.association :considerations, collection: @considerations, as: :check_boxes, label: false
 
-  .text-center
+  .text-center{"data-turbolinks" => "false"}
     - if @patient_case.new_record?
       = f.submit 'Begin Assessment', class: 'btn'
     - else
