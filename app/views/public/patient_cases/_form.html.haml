@@ -14,7 +14,7 @@
 
   .text-center
     - if @patient_case.new_record?
-      = f.submit 'Begin Diagnosis', class: 'btn'
+      = f.submit 'Begin Assessment', class: 'btn'
     - else
       = link_to 'Back', :back, class: 'btn btn-white'
       = f.submit 'Next', class: 'btn'
