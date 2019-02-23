@@ -10,6 +10,7 @@
         %th Age max
         %th Gender
         %th Permitted Exclusions
+        %th Level
         %th
         %th
         %th
@@ -24,6 +25,7 @@
           %td= medication.age_max
           %td= medication.gender
           %td= medication.medication_type
+          %td= medication.medication_level
           %td= medication.considerations.map { |c| c.title }
           %td= link_to 'Show', admin_medication_path(medication)
           %td= link_to 'Edit', edit_admin_medication_path(medication)

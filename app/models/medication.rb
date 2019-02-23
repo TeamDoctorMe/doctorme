@@ -10,6 +10,10 @@ class Medication < ApplicationRecord
   has_many :diagnoses, through: :diagnosis_medications
 
   enum medication_type: [:over_counter, :natural, :preventative]
+  enum medication_level: [:primary, :secondary]
+
+  scope :primary,   -> { where(medication_level: :primary) }
+  scope :secondary, -> { where(medication_level: :secondary) }
 
   validates :title,       presence: true
   validates :description, presence: true

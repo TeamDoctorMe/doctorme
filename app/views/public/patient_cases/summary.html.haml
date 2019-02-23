@@ -8,7 +8,7 @@
     %p= JSON.parse(@patient_case.diagnosis_attributes)['description']
     %br
 
-    - Medication.medication_types.each do |t|
+    - Medication.medication_types.first(2).each do |t|
       - medications = @patient_case.potential_medications.where(medication_type: t.first)
       = content_for(:nav_tabs) do
         %li.nav-item

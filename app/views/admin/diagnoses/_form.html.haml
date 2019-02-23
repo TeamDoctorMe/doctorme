@@ -12,8 +12,9 @@
       .col-sm-6
         = f.input :age_max, input_html: { class: 'form-control' }
     = f.input :gender, input_html: { class: 'form-control' }, collection: Diagnosis.genders.keys, include_blank: false
-
-    = f.association :medications, as: :check_boxes
+    
+    = f.association :medications, collection: Medication.primary,   as: :check_boxes, label: "Primary Medications"
+    = f.association :medications, collection: Medication.secondary, as: :check_boxes, label: "Secondary Medications"
 
   .form-actions
     = f.button :submit
