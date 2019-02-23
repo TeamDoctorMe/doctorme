@@ -72,6 +72,7 @@ class Admin::MedicationsController < AdminController
                                          :gender,
                                          :image,
                                          :medication_type,
+                                         :medication_level,
                                          consideration_ids: [],
                                          diagnosis_ids: [])
     end
