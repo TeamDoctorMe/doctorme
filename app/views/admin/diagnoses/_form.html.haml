@@ -13,7 +13,8 @@
         = f.input :age_max, input_html: { class: 'form-control' }
     = f.input :gender, input_html: { class: 'form-control' }, collection: Diagnosis.genders.keys, include_blank: false
 
-    = f.association :medications, as: :check_boxes
+    = f.input :primary_medications, as: :check_boxes, collection: Medication.all, checked: @diagnosis.primary_medication_ids
+    = f.input :secondary_medications, as: :check_boxes, collection: Medication.all, checked: @diagnosis.secondary_medication_ids
 
   .form-actions
     = f.button :submit
