@@ -29,10 +29,10 @@ class Diagnosis < ApplicationRecord
   end
 
   def primary_medications
-    medications.where(position: 0)
+    medications.where(id: primary_medication_ids)
   end
 
   def secondary_medications
-    medications.where(position: 1)
+    medications.where(id: secondary_medication_ids)
   end
 end
