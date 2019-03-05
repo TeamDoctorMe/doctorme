@@ -31,6 +31,8 @@ class Public::PatientCasesController < ApplicationController
   end
 
   def summary
+    @diagnosis           = @patient_case.diagnosis
+    @primary_medications = @diagnosis.primary_medications.where(id: @patient_case.potential_medications.ids)
   end
 
   # GET /patient_cases/new

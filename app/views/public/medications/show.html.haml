@@ -5,6 +5,9 @@
     %b Medication details:&nbsp;
     = @medication.description
 
+  - @secondary_medications.each do |medication|
+    = medication.title
+
   .center-btn-container
     = link_to 'Back to Products', :back, class: 'btn btn-white'
     = link_to 'Start Over', new_patient_case_path, class: 'btn'

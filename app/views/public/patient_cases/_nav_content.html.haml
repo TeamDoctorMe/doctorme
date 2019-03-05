@@ -1,0 +1,20 @@
+- if medications.present?
+  .row
+    - medications.each do |med|
+      .col-sm-4.text-center
+        .col-3-image
+          = link_to medication_path(med, patient_case: patient_case.id) do
+            = image_tag med.image if med.image.attached?
+        %hr
+        %p.brand-name
+          = med.title
+        %p= med.description
+
+        .text-center
+          = link_to "Read More", medication_path(med, patient_case: patient_case.id), class: 'btn read-more-btn'
+- else
+  %p.lead
+    There are no medication for
+    = JSON.parse(patient_case.diagnosis_attributes)['title']
+    listed as
+    = "'#{medication_type.first.humanize.titleize}'"

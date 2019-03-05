@@ -39,8 +39,29 @@ class Admin::DiagnosesController < AdminController
   # PATCH/PUT /diagnoses/1
   # PATCH/PUT /diagnoses/1.json
   def update
+    if params[:diagnosis][:primary_medications].present?
+      @diagnosis.primary_diagnosis_medications.destroy_all
+
+      primary_medication_ids = params[:diagnosis][:primary_medications].reject { |m| m.empty? }
+
+      primary_medication_ids.each do |medication_id|
+        @diagnosis.diagnosis_medications.find_or_initialize_by(medication_id: medication_id, position: 0)
+      end
+    end
+
+
+    if params[:diagnosis][:secondary_medications].present?
+      @diagnosis.secondary_diagnosis_medications.destroy_all
+
+      secondary_medication_ids = params[:diagnosis][:secondary_medications].reject { |m| m.empty? }
+      
+      secondary_medication_ids.each do |medication_id|
+        @diagnosis.diagnosis_medications.find_or_initialize_by(medication_id: medication_id, position: 1)
+      end
+    end
+
     respond_to do |format|
-      if @diagnosis.update(diagnosis_params)
+      if @diagnosis.update!(diagnosis_params)
         format.html { redirect_to admin_diagnoses_path, notice: 'Diagnosis was successfully updated.' }
       else
         format.html { render :edit }
