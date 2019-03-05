@@ -1,12 +1,18 @@
-.container.container-sm.text-center
+.container.text-center
   %h1= @medication.title
   = image_tag @medication.image if @medication.image.attached?
   %p
     %b Medication details:&nbsp;
     = @medication.description
 
-  - @secondary_medications.each do |medication|
-    = medication.title
+  %hr
+
+  %h2
+    Secondary Treatments
+
+  %br
+  
+  = render 'public/medications/medication_overview', patient_case: @patient_case, medications: @secondary_medications
 
   .center-btn-container
     = link_to 'Back to Products', :back, class: 'btn btn-white'

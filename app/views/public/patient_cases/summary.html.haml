@@ -6,47 +6,18 @@
 
     %strong.medicine-title= JSON.parse(@patient_case.diagnosis_attributes)['title']
     %p= JSON.parse(@patient_case.diagnosis_attributes)['description']
+    
+    %hr
+
+    %h2.text-center
+      Primary Treatments
+
     %br
+    
+    = render 'public/medications/medication_overview', patient_case: @patient_case, medications: @primary_medications
 
-    - Medication.medication_types.each do |t|
-      - medications = @primary_medications.where(medication_type: t.first)
-      = content_for(:nav_tabs) do
-        %li.nav-item
-          %a#over-the-counter-tab.nav-link{"aria-controls" => "over-the-counter", "aria-selected" => "true", "data-toggle" => "tab", href: "##{t.first}", role: "tab", class: "#{'active' if t.last == 0}"}
-            = t.first.humanize.titleize
-
-      = content_for(:nav_content) do
-        .tab-pane.fade{"aria-labelledby" => "over-the-counter-tab", role: "tabpanel", id: "#{t.first}", class: "#{'active show' if t.last == 0}"}
-          - if medications.present?
-            .row
-              - medications.each do |med|
-                .col-sm-4.text-center
-                  .col-3-image
-                    = image_tag med.image if med.image.attached?
-                  %hr
-                  %p.brand-name
-                    = med.title
-                  %p= med.description
-
-                  .text-center
-                    = link_to "Read More", medication_path(med, patient_case_id: @patient_case.id), class: 'btn read-more-btn'
-          - else
-            %p.lead
-              There are no medication for
-              = JSON.parse(@patient_case.diagnosis_attributes)['title']
-              listed as
-              = "'#{t.first.humanize.titleize}'"
-
-          .text-center
-            = link_to "Start Over", new_patient_case_path, class: 'btn btn-start-over'
-
-    / Nav tabs
-    %ul#summary-tab.nav.nav-fill.nav-tabs{role: "tablist"}
-      = yield(:nav_tabs)
-
-    / Tab panes
-    #summary-tab-content.tab-content
-      = yield(:nav_content)
+    .text-center
+      = link_to "Start Over", new_patient_case_path, class: 'btn btn-start-over'
 
 - else
   = render "public/patient_cases/no_remedies"

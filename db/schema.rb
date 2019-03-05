@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 2019_02_27_201647) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "medication_type", default: 0
-    t.integer "medication_level", default: 0
   end
 
   create_table "patient_cases", force: :cascade do |t|
