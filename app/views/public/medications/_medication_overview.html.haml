@@ -1,5 +1,6 @@
 - Medication.medication_types.each do |t|
-  - medications = medications.where(medication_type: t.first)
+  - meds = medications.where(medication_type: t.first)
+  
   = content_for(:nav_tabs) do
     %li.nav-item
       %a#over-the-counter-tab.nav-link{"aria-controls" => "over-the-counter", "aria-selected" => "true", "data-toggle" => "tab", href: "##{t.first}", role: "tab", class: "#{'active' if t.last == 0}"}
@@ -7,9 +8,9 @@
 
   = content_for(:nav_content) do
     .tab-pane.fade{"aria-labelledby" => "over-the-counter-tab", role: "tabpanel", id: "#{t.first}", class: "#{'active show' if t.last == 0}"}
-      - if medications.present?
+      - if meds.present?
         .row
-          - medications.each do |med|
+          - meds.each do |med|
             .col-sm-4.text-center
               .col-3-image
                 = image_tag med.image if med.image.attached?
